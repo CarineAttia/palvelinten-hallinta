@@ -55,7 +55,8 @@ d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komento
 ## a)
 
 
-Lähteet:
+## Lähteet:
+
 Karvinen, Tero 2025. Palvelinten hallinta: Läksyt. https://terokarvinen.com/palvelinten-hallinta/#laksyt
 
 Karvinen, Tero 2023. Run Salt Command Locally. https://terokarvinen.com/2021/salt-run-command-locally/
