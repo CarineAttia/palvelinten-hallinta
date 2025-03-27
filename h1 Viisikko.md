@@ -72,3 +72,5 @@ Karvinen, Tero 2006. Raportin kirjoittaminen. https://terokarvinen.com/2006/06/0
 
 WMWare Inc. Salt Install Guide: Linux (DEB). https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/linux-deb.html
 
+Karvinen, Tero. Install Debian on Virtualbox. https://terokarvinen.com/2021/install-debian-on-virtualbox/
+
