@@ -13,7 +13,7 @@ d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komento
 
 
 ## x)
-## Run Salt Command Locally
+## run-salt-command-locally
 - Saltia käytetään yleensä ohjaamaan useita koneita verkon yli
 - Salt-komentoja voi ajaa paikallisesti ja nähdä tuloksen heti
 - hyödyllistä harjoitteluun, testaukseen ja nopeaan käyttöönottoon
