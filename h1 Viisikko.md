@@ -1,5 +1,17 @@
 # h1 Viisikko
 
+## Viikon 1 tehtävät:
+x) Lue ja tiivistä
+
+a) Asenna Debian 12-Bookworm virtuaalikoneeseen (Poikkeuksellisesti tätä alakohtaa ei tarvitse raportoida, jos siinä ei ole mitään ongelmia).
+
+b) Asenna Salt (salt-minion) Linuxille (uuteen virtuaalikoneeseesi)
+
+c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.
+
+d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
+
+x)
 ## Run Salt Command Locally
 - Saltia käytetään yleensä ohjaamaan useita koneita verkon yli
 - Salt-komentoja voi ajaa paikallisesti ja nähdä tuloksen heti
@@ -33,14 +45,23 @@
 - Valehtelu (esim. raportoitu, että muka tehty jotain, mitä ei oikeasti ole tehty), tekstin plagiointi ja kuvien laiton kopiointi kiellettyä
   
 ## WMWare Inc. Salt Install Guide: Linux (DEB)
-- 
-- 
+- Ohjeet kertovat, miten Salt asennetaan käyttöjärjestelmiin, jotka ovat Debianin kaltaisia:
+  1. Asenna Salt Projectin repository
+  2. Suorita sudo apt update 
+  3. Asenna salt-minion, salt-master ja muut Saltin osat
+  4. Ota Salt-services käyttöön ja käynnistä ne
+ 
+a)
 
 
 Lähteet:
-- Karvinen, Tero 2025. Palvelinten hallinta: Läksyt. https://terokarvinen.com/palvelinten-hallinta/#laksyt
-- Karvinen, Tero 2023. Run Salt Command Locally. https://terokarvinen.com/2021/salt-run-command-locally/
-- Karvinen, Tero 2018. Salt Quickstart - Salt Stack Master and Slave on Ubuntu Linux. https://terokarvinen.com/2018/03/28/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/
-- Karvinen, Tero 2006. Raportin kirjoittaminen. https://terokarvinen.com/2006/06/04/raportin-kirjoittaminen-4/
-- WMWare Inc. Salt Install Guide: Linux (DEB). https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/linux-deb.html
+Karvinen, Tero 2025. Palvelinten hallinta: Läksyt. https://terokarvinen.com/palvelinten-hallinta/#laksyt
+
+Karvinen, Tero 2023. Run Salt Command Locally. https://terokarvinen.com/2021/salt-run-command-locally/
+
+Karvinen, Tero 2018. Salt Quickstart - Salt Stack Master and Slave on Ubuntu Linux. https://terokarvinen.com/2018/03/28/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/
+
+Karvinen, Tero 2006. Raportin kirjoittaminen. https://terokarvinen.com/2006/06/04/raportin-kirjoittaminen-4/
+
+WMWare Inc. Salt Install Guide: Linux (DEB). https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/linux-deb.html
 
