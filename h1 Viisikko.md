@@ -11,8 +11,7 @@ c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Salt
 
 d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
-x)
-## Run Salt Command Locally
+x) ## Run Salt Command Locally
 - Saltia käytetään yleensä ohjaamaan useita koneita verkon yli
 - Salt-komentoja voi ajaa paikallisesti ja nähdä tuloksen heti
 - hyödyllistä harjoitteluun, testaukseen ja nopeaan käyttöönottoon
