@@ -50,7 +50,7 @@ d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komento
   1. Asenna Salt Projectin repository
   2. Suorita sudo apt update 
   3. Asenna salt-minion, salt-master ja muut Saltin osat
-  4. Ota Salt-services käyttöön ja käynnistä ne
+  4. Ota Salt-services käyttöön ja käynnistä
  
 ## a)
 ## b)
