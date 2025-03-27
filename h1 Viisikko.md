@@ -1,7 +1,7 @@
 # h1 Viisikko
 
 ## Viikon 1 tehtävät:
-x) [Lue ja tiivistä] (#x))
+x) Lue ja tiivistä
 
 a) Asenna Debian 12-Bookworm virtuaalikoneeseen (Poikkeuksellisesti tätä alakohtaa ei tarvitse raportoida, jos siinä ei ole mitään ongelmia).
 
