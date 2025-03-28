@@ -215,7 +215,15 @@ Idempotentti = Toiminto, jonka voi suoritta useita kertoja, mutta lopputulos pys
 
 Kun asensin treetä komennolla `sudo salt-call --local -l info state.single pkg.installed tree`, sain vastaukseksi, että se on jo asennettu. Kokeilin komentoa pari kertaa uudelleen ja sain aina saman vastauksen, että se löytyy jo.
 
+Ensimmäinen kerta:
+
 <img src="kuvat/pkg.png" width="60%">
+
+Seuraavat kerrat:
+
+<img src="kuvat/pkg_indempotentti.png" width="60%">
+
+Lopputulos pysyi siis koko ajan samana.
 
 
 
