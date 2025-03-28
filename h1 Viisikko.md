@@ -213,12 +213,9 @@ Total run time = 725.399 ms (kokonaiskesto)
 
 Idempotentti = Toiminto, jonka voi suoritta useita kertoja, mutta lopputulos pysyy jokaisen suorituskerran jälkeen samana. Esimerkiksi jos tree-pakettia ei ole asennettu, Salt asentaa sen. Jos se on jo asennettu, Salt ei tee mitään. Komennon voi ajaa niin monta kertaa kuin haluaa, mutta lopputulos pysyy samana.
 
-Kun asensin treetä komennolla `sudo salt-call --local -l info state.single pkg.installed tree`, sain vastaukseksi, että se on jo asennettu. Kokeilin komentoa uudelleen ja sain aina saman vastauksen, että se löytyy jo.
+Kun asensin treetä komennolla `sudo salt-call --local -l info state.single pkg.installed tree`, sain vastaukseksi, että se on jo asennettu. Kokeilin komentoa pari kertaa uudelleen ja sain aina saman vastauksen, että se löytyy jo.
 
 <img src="kuvat/pkg.png" width="60%">
-
-Kokeilin myös luoda uudelleen testi-tiedostoa komennolla `sudo salt-call --local info state.single cmd.run 'touch /tmp/testi' creates="/tmp/testi"`. 
-
 
 
 
