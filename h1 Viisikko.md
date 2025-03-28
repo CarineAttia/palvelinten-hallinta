@@ -76,11 +76,11 @@ Pkgn avulla hallinnoisaan ohjelmien asennusta.
 
 <img src="kuvat/pkg.png" width="60%">
 
-ID = Tree (paketin nimi)
+ID = Tree (paketin mitä asennetaan)
 
-Function = pkg.installed (funktion nimi)
+Function = pkg.installed (mitä funktiota käytetty)
 
-Result = True (onnistuiko paketin ajaminen)
+Result = True (onnistunut suoritus)
 
 Comment = All specified packages are already installed (kommentti)
 
@@ -90,7 +90,7 @@ Duration = 59.509 ms (kesto)
 
 Changes = - (mitä muutoksia on tehty)
 
-Total states run = 1 (montako asiaa tehty)
+Total states run = 1 (montako tehtävää suoritettu)
 
 Total run time = 59.509 ms (kokonaiskesto)
 
@@ -103,13 +103,13 @@ Filen avulla hallinnoidaan tiedostoja.
 
 <img src="kuvat/file.png" width="60%">
 
-ID = /tmp/testitiedosto
+ID = /tmp/testitiedosto (tiedosto mikä luotiin)
 
-Function = file.managed (funktion nimi)
+Function = file.managed (mitä funktiota käytetty)
 
-Result =  True (onnistuiko fuktion suoritus)
+Result =  True (onnistunut fuktion suoritus)
 
-Comment = Empty file (kommentti)
+Comment = Empty file (tyhjä tiedosto)
 
 Started = 16.44 (milloin suoritus alkanut)
 
@@ -117,7 +117,7 @@ Duration = 4.345 ms (kesto)
 
 Changes = new: file /tmp/testitiedosto created (muutokset)
 
-Total states run = 1 (montako asiaa tehty)
+Total states run = 1 (montako tehtävää suoritettu)
 
 Total run time = 4.345 ms (kokonaiskesto)
 
@@ -125,31 +125,38 @@ Total run time = 4.345 ms (kokonaiskesto)
 
 Servicen avulla
 
-`sudo salt-call --local -l info state.single service.running apache2 enable=True`
+`sudo salt-call --local -l info state.single service.running apache2 enable=True` = yritin käynnistää apachea
 
 <img src="kuvat/service.png" width="60%">
 
-ID = 
-Function = 
-Result = 
-Comment = 
-Started = (milloin suoritus alkanut)
-Duration = 
-Changes = 
-Summary for local = 
-Total states run = 
-Total run time =
+ID = apache2 
+
+Function = service.running (mitä funktiota käytetty)
+
+Result = False (funktion ajaminen ei onnistunut, koska apachea ei ole asennettu)
+
+Comment = The named service apache2 is not available (apachea ei ole asennettu)
+
+Started = 16.58 (milloin suoritus alkanut)
+
+Duration = 23.276 ms (milloin suoritus alkanut)
+
+Changes = ei muutoksia
+
+Total states run = 1 (montako tehtävää suoritettu)
+
+Total run time = 23.276 m (kokonaiskesto)
 
 ## user 
 
-Userin avulla 
+Userin avulla hallitaan käyttäjiä ja niiden asetuksia
 
-``
+`sudo salt-call --local -l info state.single user.present user1` = loin uuden käyttäjän nimeltä user1
 
 <img src="kuvat/pkg.png" width="60%">
 
 ID = 
-Function = 
+Function = (mitä funktiota käytetty)
 Result = 
 Comment = 
 Started = (milloin suoritus alkanut)
@@ -168,7 +175,7 @@ Cmdn avulla'
 <img src="kuvat/pkg.png" width="60%">
 
 ID = 
-Function = 
+Function = (mitä funktiota käytetty)
 Result = 
 Comment = 
 Started = (milloin suoritus alkanut)
