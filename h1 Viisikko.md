@@ -70,25 +70,25 @@ Tämän jälkeen Saltin virallinen asennus:
 
 ## pkg
 
-Pkgn avulla hallinnoisaan ohjelmien asennusta.
+Pkgn avulla hallinnoidaan ohjelmien asennusta.
 
-`sudo salt-call --local -l info state.single pkg.installed tree` = asensin Treen
+`sudo salt-call --local -l info state.single pkg.installed tree` = asensin treen
 
 <img src="kuvat/pkg.png" width="60%">
 
-ID = Tree (paketin mitä asennetaan)
+ID = tree (paketti mitä asennetaan)
 
 Function = pkg.installed (mitä funktiota käytetty)
 
 Result = True (onnistunut suoritus)
 
-Comment = All specified packages are already installed (kommentti)
+Comment = All specified packages are already installed (tree oli jo valmiiksi asennettu, vaikka itse en ole sitä asentanut)
 
 Started = 15.32 (milloin alkanut)
 
 Duration = 59.509 ms (kesto)
 
-Changes = - (mitä muutoksia on tehty)
+Changes = ei muutoksia, koska tree löytyi jo (mitä muutoksia on tehty)
 
 Total states run = 1 (montako tehtävää suoritettu)
 
@@ -103,7 +103,7 @@ Filen avulla hallinnoidaan tiedostoja.
 
 <img src="kuvat/file.png" width="60%">
 
-ID = /tmp/testitiedosto (tiedosto mikä luotiin)
+ID = /tmp/testitiedosto (tiedostopolku mikä luotiin)
 
 Function = file.managed (mitä funktiota käytetty)
 
@@ -123,19 +123,19 @@ Total run time = 4.345 ms (kokonaiskesto)
 
 ## service
 
-Servicen avulla
+Servicen avulla hallitaan palveluita ja sitä, ovatko ne käynnissä vai eivät.
 
 `sudo salt-call --local -l info state.single service.running apache2 enable=True` = yritin käynnistää apachea
 
 <img src="kuvat/service.png" width="60%">
 
-ID = apache2 
+ID = apache2 (palvelu mitä yritin käynnistää)
 
 Function = service.running (mitä funktiota käytetty)
 
 Result = False (funktion ajaminen ei onnistunut, koska apachea ei ole asennettu)
 
-Comment = The named service apache2 is not available (apachea ei ole asennettu)
+Comment = The named service apache2 is not available (koska apachea ei ole asennettu)
 
 Started = 16.58 (milloin suoritus alkanut)
 
@@ -149,14 +149,14 @@ Total run time = 23.276 m (kokonaiskesto)
 
 ## user 
 
-Userin avulla hallitaan käyttäjiä ja niiden asetuksia
+Userin avulla hallitaan käyttäjiä ja niiden asetuksia.
 
 `sudo salt-call --local -l info state.single user.present user1` = loin uuden käyttäjän nimeltä user1
 
 <img src="kuvat/user1.png" width="60%">
 <img src="kuvat/user2.png" width="60%">
 
-ID = user1 (uuden käyttäjän nimi)
+ID = user1 (uuden luodun käyttäjän nimi)
 
 Function = user.present (mitä funktiota käytetty)
 
@@ -185,9 +185,9 @@ Total run time = 70.235 ms (kokonaiskesto)
 
 ## cmd
 
-Cmdn avulla 
+Cmdn avulla hallitaan komentojen suorittamista. Voidaan määrittää, että komento suoritetaan vain tietyjen ehtojen täytyttyä.
 
-`sudo salt-call --local info state.single cmd.run 'touch /tmp/testi' creates="/tmp/testi"` = loin
+`sudo salt-call --local info state.single cmd.run 'touch /tmp/testi' creates="/tmp/testi"` = loin testi-tiedoston
 
 <img src="kuvat/cmd.png" width="60%">
 
@@ -211,18 +211,40 @@ Total run time = 725.399 ms (kokonaiskesto)
 
 ## d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
+Idempotentti = Toiminto, jonka voi suoritta useita kertoja, mutta lopputulos pysyy jokaisen suorituskerran jälkeen samana. Esimerkiksi jos tree-pakettia ei ole asennettu, Salt asentaa sen. Jos se on jo asennettu, Salt ei tee mitään. Komennon voi ajaa niin monta kertaa kuin haluaa, mutta lopputulos pysyy samana.
+
+Kun asensin treetä komennolla `sudo salt-call --local -l info state.single pkg.installed tree`, sain vastaukseksi, että se on jo asennettu. Kokeilin komentoa uudelleen ja sain aina saman vastauksen, että se löytyy jo.
+
+<img src="kuvat/pkg.png" width="60%">
+
+Kokeilin myös luoda uudelleen testi-tiedostoa komennolla `sudo salt-call --local info state.single cmd.run 'touch /tmp/testi' creates="/tmp/testi"`. 
+
+
+
 
 Lähteet:
 
-Karvinen, Tero 2025. Palvelinten hallinta: Läksyt. https://terokarvinen.com/palvelinten-hallinta/#laksyt
+Karvinen, T. 2025. Palvelinten hallinta: Läksyt. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/#laksyt Luettu: 27.3.2025
 
-Karvinen, Tero 2023. Run Salt Command Locally. https://terokarvinen.com/2021/salt-run-command-locally/
+Karvinen, T. 2023. Run Salt Command Locally. Luettavissa: https://terokarvinen.com/2021/salt-run-command-locally/ Luettu: 27.3.2025
 
-Karvinen, Tero 2018. Salt Quickstart - Salt Stack Master and Slave on Ubuntu Linux. https://terokarvinen.com/2018/03/28/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/
+Karvinen, T. 2018. Salt Quickstart - Salt Stack Master and Slave on Ubuntu Linux. Luettavissa: https://terokarvinen.com/2018/03/28/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/ Luettu: 27.3.2025
 
-Karvinen, Tero 2006. Raportin kirjoittaminen. https://terokarvinen.com/2006/06/04/raportin-kirjoittaminen-4/
+Karvinen, T. 2006. Raportin kirjoittaminen. Luettavissa: https://terokarvinen.com/2006/06/04/raportin-kirjoittaminen-4/ Luettu: 27.3.2025
 
-WMWare Inc. Salt Install Guide: Linux (DEB). https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/linux-deb.html
+WMWare Inc. Salt Install Guide: Linux (DEB). Luettavissa: https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/linux-deb.html Luettu: 27.3.2025
 
-Karvinen, Tero 2024. Install Debian on Virtualbox. https://terokarvinen.com/2021/install-debian-on-virtualbox/
+Karvinen, T. 2024. Install Debian on Virtualbox. Luettavissa: https://terokarvinen.com/2021/install-debian-on-virtualbox/ Luettu: 27.3.2025
+
+WMWare Inc. 2025. Salt.States.Pkg. Luettavissa: https://docs.saltproject.io/en/master/ref/states/all/salt.states.pkg.html Luettu: 28.3.2025
+
+WMWare Inc. 2025. Salt.States.File. Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.file.html Luettu: 28.3.2025
+
+WMWare Inc. 2025. Salt.States.Service. Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.service.html Luettu: 28.3.2025
+
+WMWare Inc. 2025. Salt.States.User. Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.user.html Luettu: 28.3.2025
+
+WMWare Inc. 2025. Salt.States.Cmd. Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.cmd.html Luettu: 28.3.2025
+
+WMWare Inc. 2025. Glossary. Luettavissa: https://docs.saltproject.io/en/3006/glossary.html Luettu: 28.3.2025
 
