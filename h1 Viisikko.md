@@ -74,7 +74,7 @@ Pkgn avulla asennetaan ohjelmia.
 
 `sudo salt-call --local -l info state.single pkg.installed tree` = asensin Treen
 
-
+![pkg-komento] (kuvat/pkg.png)
 
 
 ## file
