@@ -49,17 +49,28 @@ Viikon 1 tehtävät:
 Asensin Debian 12-Bookwormin virtuaalikoneelleni. Asennus onnistui ilman ongelmia.
 ## b) Asenna Salt (salt-minion) Linuxille (uuteen virtuaalikoneeseesi)
 Saltin asennus virtuaalikoneelle:
-`mkdir -p /etc/apt/keyrings` = 
 
-`curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp` = 
+Ennen Saltin asennusta varten ....
+
+`mkdir -p /etc/apt/keyrings` = luo hakemiston, johon Saltin GPG-avaimet tallennetaan
+
+`curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp` = lataa ja tallentaa Saltin GPG-avaimen
 
 `curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | sudo tee /etc/apt/sources.list.d/salt.sources` = 
 
-`sudo apt-get update` = 
+Tämän jälkeen Saltin virallinen asennus:
 
-`sudo-apt get -y install salt-minion` = 
+`sudo apt-get update` = hakee päivitykset
+
+`sudo-apt get -y install salt-minion` = asentaa saltin
 
 ## c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.
+
+pkg
+file
+service
+user 
+cmd
 
 ## d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
