@@ -153,7 +153,8 @@ Userin avulla hallitaan käyttäjiä ja niiden asetuksia
 
 `sudo salt-call --local -l info state.single user.present user1` = loin uuden käyttäjän nimeltä user1
 
-<img src="kuvat/pkg.png" width="60%">
+<img src="kuvat/user1.png" width="60%">
+<img src="kuvat/user2.png" width="60%">
 
 ID = 
 Function = (mitä funktiota käytetty)
