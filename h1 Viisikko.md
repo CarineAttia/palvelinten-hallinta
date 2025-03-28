@@ -101,7 +101,7 @@ Filen avulla hallinnoidaan tiedostoja.
 
 `sudo salt-call --local -l info state.single file.managed /tmp/testitiedosto` = loin testitiedoston
 
-<img src="kuvat/pkg.png" width="50%">
+<img src="kuvat/file.png" width="50%">
 
 ID = /tmp/testitiedosto
 
