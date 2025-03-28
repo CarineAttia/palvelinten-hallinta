@@ -2,18 +2,9 @@
 
 
 ## Viikon 1 tehtävät:
-x) Lue ja tiivistä (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Ei siis vaadita pitkää eikä essee-muotoista tiivistelmää. Lisää kuhunkin jokin oma kysymys tai huomio.).
 
-a) Asenna Debian 12-Bookworm virtuaalikoneeseen (Poikkeuksellisesti tätä alakohtaa ei tarvitse raportoida, jos siinä ei ole mitään ongelmia).
+## x) Lue ja tiivistä (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Ei siis vaadita pitkää eikä essee-muotoista tiivistelmää. Lisää kuhunkin jokin oma kysymys tai huomio.).
 
-b) Asenna Salt (salt-minion) Linuxille (uuteen virtuaalikoneeseesi)
-
-c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.
-
-d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
-
-
-## x)
 ## Run Salt Command Locally
 - Saltia käytetään yleensä ohjaamaan useita koneita verkon yli
 - Salt-komentoja voi ajaa paikallisesti ja nähdä tuloksen heti
@@ -53,11 +44,14 @@ d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komento
   3. Asenna salt-minion, salt-master ja muut Saltin osat
   4. Ota Salt-services käyttöön ja käynnistä
  
-## a)
+## a) Asenna Debian 12-Bookworm virtuaalikoneeseen (Poikkeuksellisesti tätä alakohtaa ei tarvitse raportoida, jos siinä ei ole mitään ongelmia).
+
 Asensin Debian 12-Bookwormin virtuaalikoneelleni. Asennus onnistui ilman ongelmia.
-## b)
-## c)
-## d)
+## b) Asenna Salt (salt-minion) Linuxille (uuteen virtuaalikoneeseesi)
+
+## c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.
+
+## d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
 
 ## Lähteet:
