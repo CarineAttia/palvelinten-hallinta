@@ -54,7 +54,7 @@ d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komento
   4. Ota Salt-services käyttöön ja käynnistä
  
 ## a)
-Asennus onnistui ilman ongelmia.
+Asensin Debian 12-Bookwormin virtuaalikoneelleni. Asennus onnistui ilman ongelmia.
 ## b)
 ## c)
 ## d)
