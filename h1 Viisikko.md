@@ -170,16 +170,16 @@ Started = 17.13 (milloin suoritus alkanut)
 
 Duration = 70.235 ms (kesto)
 
-Changes = muutokset
-  groups = 
+Changes = 
+  groups = user1
   
-  home = /home/user1/ (käyttäjän kotihakemisto)
+  home = /home/user1/
   
-  name = user1 (käyttäjän nimi)
+  name = user1
   
-  shell = /bin/sh ()
+  shell = /bin/sh
   
-  uid = 1001 ()
+  uid = 1001
 
 Total states run = 1 (montako tehtävää suoritettu)
 
@@ -199,13 +199,15 @@ Function = cmd.run (mitä funktiota käytetty)
 
 Result = True (onnistunut suoritus)
 
-Comment = Command "touch /tmp/testi" run ()
+Comment = Command "touch /tmp/testi" run (komento suoritettu)
 
 Started = 17.31 (milloin suoritus alkanut)
 
 Duration = 725.399 ms (kesto)
 
-Changes = mitä muutoksia tehty
+Changes = 
+  pid = 4310
+  retcode = 0
 
 Total states run = 1 (montako tehtävää suoritettu)
 
