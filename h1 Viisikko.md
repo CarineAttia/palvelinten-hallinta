@@ -50,27 +50,47 @@ Asensin Debian 12-Bookwormin virtuaalikoneelleni. Asennus onnistui ilman ongelmi
 ## b) Asenna Salt (salt-minion) Linuxille (uuteen virtuaalikoneeseesi)
 Saltin asennus virtuaalikoneelle:
 
-Ennen Saltin asennusta varten ....
+Ennen Saltin asennusta varten lisäsin
 
-`mkdir -p /etc/apt/keyrings` = luo hakemiston, johon Saltin GPG-avaimet tallennetaan
+`mkdir -p /etc/apt/keyrings` = loin hakemiston, johon Saltin GPG-avaimet tallennetaan
 
-`curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp` = lataa ja tallentaa Saltin GPG-avaimen
+`curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp` = latasin ja tallensin Saltin GPG-avaimen
 
 `curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | sudo tee /etc/apt/sources.list.d/salt.sources` = 
 
 Tämän jälkeen Saltin virallinen asennus:
 
-`sudo apt-get update` = hakee päivitykset
+`sudo apt-get update` = hain päivitykset
 
-`sudo-apt get -y install salt-minion` = asentaa saltin
+`sudo-apt get -y install salt-minion` = asensin saltin
+
+`sudo salt-call --version`= tarkistin vielä, että Salt varmasti asentunut. Sain onnistuneen vastauksen
 
 ## c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.
 
-pkg
-file
-service
-user 
-cmd
+## pkg
+
+Pkgn avulla asennetaan ohjelmia.
+
+`sudo salt-call --local -l info state.single pkg.installed tree` = asensin Treen
+
+
+
+## file
+
+Filen avulla
+
+## service
+
+Servicen avulla
+
+## user 
+
+Userin avulla 
+
+## cmd
+
+Cmdn avulla
 
 ## d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
