@@ -78,7 +78,7 @@ Pkgn avulla hallinnoidaan ohjelmien asennusta.
 
 <img src="kuvat/pkg.png" width="60%">
 
-ID = tree (paketti mitä asennetaan)
+ID = tree (paketti mitä Salt käsitteli)
 
 Function = pkg.installed (mitä funktiota käytetty)
 
@@ -105,7 +105,7 @@ Filen avulla hallinnoidaan tiedostoja.
 
 <img src="kuvat/file.png" width="60%">
 
-ID = /tmp/testitiedosto (tiedostopolku mikä luotiin)
+ID = /tmp/testitiedosto (tiedostopolku, mitä Salt käsitteli)
 
 Function = file.managed (mitä funktiota käytetty)
 
@@ -131,7 +131,7 @@ Servicen avulla hallitaan palveluita ja sitä, ovatko ne käynnissä vai eivät.
 
 <img src="kuvat/service.png" width="60%">
 
-ID = apache2 (palvelu mitä yritin käynnistää)
+ID = apache2 (palvelu, minkä tilaa Salt yritti muuttaa)
 
 Function = service.running (mitä funktiota käytetty)
 
@@ -158,7 +158,7 @@ Userin avulla hallitaan käyttäjiä ja niiden asetuksia.
 <img src="kuvat/user1.png" width="60%">
 <img src="kuvat/user2.png" width="60%">
 
-ID = user1 (uuden luodun käyttäjän nimi)
+ID = user1 (käyttäjä, jonka Salt loi)
 
 Function = user.present (mitä funktiota käytetty)
 
@@ -193,7 +193,7 @@ Cmdn avulla hallitaan komentojen suorittamista. Voidaan määrittää, että kom
 
 <img src="kuvat/cmd.png" width="60%">
 
-ID = touch /tmp/testi
+ID = touch /tmp/testi (komento, jonka Salt suoritti luodakseen tiedoston)
 
 Function = cmd.run (mitä funktiota käytetty)
 
