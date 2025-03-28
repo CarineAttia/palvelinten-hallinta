@@ -74,24 +74,102 @@ Pkgn avulla asennetaan ohjelmia.
 
 `sudo salt-call --local -l info state.single pkg.installed tree` = asensin Treen
 
-![pkg-komento] (kuvat/pkg.png)
+<img src="kuvat/pkg.png" width="50%">
+
+ID = Tree (paketin nimi)
+
+Function = pkg.installed ()
+
+Result = True (onnistuiko paketin ajaminen)
+
+Comment = All specified packages are already installed ()
+
+Started = 15.32
+
+Duration = 59.509 ms (kesto)
+
+Changes = mitä muutoksia on tehty
+
+Total states run = 1 (montako asiaa tehty)
+
+Total run time = 59.509 ms (kokonaiskesto)
 
 
 ## file
 
 Filen avulla
 
+``
+
+<img src="kuvat/pkg.png" width="50%">
+
+ID = 
+Function = 
+Result = 
+Comment = 
+Started = 
+Duration = 
+Changes = 
+Summary for local = 
+Total states run = 
+Total run time =
+
 ## service
 
 Servicen avulla
+
+``
+
+<img src="kuvat/pkg.png" width="50%">
+
+ID = 
+Function = 
+Result = 
+Comment = 
+Started = 
+Duration = 
+Changes = 
+Summary for local = 
+Total states run = 
+Total run time =
 
 ## user 
 
 Userin avulla 
 
+``
+
+<img src="kuvat/pkg.png" width="50%">
+
+ID = 
+Function = 
+Result = 
+Comment = 
+Started = 
+Duration = 
+Changes = 
+Summary for local = 
+Total states run = 
+Total run time =
+
 ## cmd
 
-Cmdn avulla
+Cmdn avulla'
+
+`` 
+
+<img src="kuvat/pkg.png" width="50%">
+
+ID = 
+Function = 
+Result = 
+Comment = 
+Started = 
+Duration = 
+Changes = 
+Summary for local = 
+Total states run = 
+Total run time =
 
 ## d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
