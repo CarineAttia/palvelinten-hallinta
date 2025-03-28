@@ -70,7 +70,7 @@ Tämän jälkeen Saltin virallinen asennus:
 
 ## pkg
 
-Pkgn avulla asennetaan ohjelmia.
+Pkgn avulla hallinnoisaan ohjelmien asennusta.
 
 `sudo salt-call --local -l info state.single pkg.installed tree` = asensin Treen
 
@@ -78,13 +78,13 @@ Pkgn avulla asennetaan ohjelmia.
 
 ID = Tree (paketin nimi)
 
-Function = pkg.installed ()
+Function = pkg.installed (funktion nimi)
 
 Result = True (onnistuiko paketin ajaminen)
 
-Comment = All specified packages are already installed ()
+Comment = All specified packages are already installed (kommentti)
 
-Started = 15.32
+Started = 15.32 (milloin alkanut)
 
 Duration = 59.509 ms (kesto)
 
@@ -97,22 +97,29 @@ Total run time = 59.509 ms (kokonaiskesto)
 
 ## file
 
-Filen avulla
+Filen avulla hallinnoidaan tiedostoja.
 
-``
+`sudo salt-call --local -l info state.single file.managed /tmp/testitiedosto` = loin testitiedoston
 
 <img src="kuvat/pkg.png" width="50%">
 
-ID = 
-Function = 
-Result = 
-Comment = 
-Started = 
-Duration = 
-Changes = 
-Summary for local = 
-Total states run = 
-Total run time =
+ID = /tmp/testitiedosto
+
+Function = file.managed (funktion nimi)
+
+Result =  True (onnistuiko fuktion suoritus)
+
+Comment = Empty file (kommentti)
+
+Started = 16.44 (milloin suoritus alkanut)
+
+Duration = 4.345 ms (kesto)
+
+Changes = new: file /tmp/testitiedosto created (muutokset)
+
+Total states run = 1 (montako asiaa tehty)
+
+Total run time = 4.345 ms (kokonaiskesto)
 
 ## service
 
@@ -126,7 +133,7 @@ ID =
 Function = 
 Result = 
 Comment = 
-Started = 
+Started = (milloin suoritus alkanut)
 Duration = 
 Changes = 
 Summary for local = 
@@ -145,7 +152,7 @@ ID =
 Function = 
 Result = 
 Comment = 
-Started = 
+Started = (milloin suoritus alkanut)
 Duration = 
 Changes = 
 Summary for local = 
@@ -164,7 +171,7 @@ ID =
 Function = 
 Result = 
 Comment = 
-Started = 
+Started = (milloin suoritus alkanut)
 Duration = 
 Changes = 
 Summary for local = 
