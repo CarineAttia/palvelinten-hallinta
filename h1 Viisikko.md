@@ -1,7 +1,7 @@
 # h1 Viisikko
 
 
-## Viikon 1 tehtävät:
+Viikon 1 tehtävät:
 
 ## x) Lue ja tiivistä (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Ei siis vaadita pitkää eikä essee-muotoista tiivistelmää. Lisää kuhunkin jokin oma kysymys tai huomio.).
 
@@ -48,13 +48,23 @@
 
 Asensin Debian 12-Bookwormin virtuaalikoneelleni. Asennus onnistui ilman ongelmia.
 ## b) Asenna Salt (salt-minion) Linuxille (uuteen virtuaalikoneeseesi)
+Saltin asennus virtuaalikoneelle:
+`mkdir -p /etc/apt/keyrings` = 
+
+`curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp` = 
+
+`curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | sudo tee /etc/apt/sources.list.d/salt.sources` = 
+
+`sudo apt-get update` = 
+
+`sudo-apt get -y install salt-minion` = 
 
 ## c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.
 
 ## d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
 
-## Lähteet:
+Lähteet:
 
 Karvinen, Tero 2025. Palvelinten hallinta: Läksyt. https://terokarvinen.com/palvelinten-hallinta/#laksyt
 
@@ -66,5 +76,5 @@ Karvinen, Tero 2006. Raportin kirjoittaminen. https://terokarvinen.com/2006/06/0
 
 WMWare Inc. Salt Install Guide: Linux (DEB). https://docs.saltproject.io/salt/install-guide/en/latest/topics/install-by-operating-system/linux-deb.html
 
-Karvinen, Tero. Install Debian on Virtualbox. https://terokarvinen.com/2021/install-debian-on-virtualbox/
+Karvinen, Tero 2024. Install Debian on Virtualbox. https://terokarvinen.com/2021/install-debian-on-virtualbox/
 
