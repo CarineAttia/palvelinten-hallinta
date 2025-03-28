@@ -88,7 +88,7 @@ Started = 15.32 (milloin alkanut)
 
 Duration = 59.509 ms (kesto)
 
-Changes = mitä muutoksia on tehty
+Changes = - (mitä muutoksia on tehty)
 
 Total states run = 1 (montako asiaa tehty)
 
@@ -125,7 +125,7 @@ Total run time = 4.345 ms (kokonaiskesto)
 
 Servicen avulla
 
-``
+`sudo salt-call --local -l info state.single service.running apache2 enable=True`
 
 <img src="kuvat/pkg.png" width="50%">
 
