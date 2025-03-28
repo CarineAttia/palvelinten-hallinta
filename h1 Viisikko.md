@@ -187,20 +187,27 @@ Total run time = 70.235 ms (kokonaiskesto)
 
 Cmdn avulla 
 
-`` 
+`sudo salt-call --local info state.single cmd.run 'touch /tmp/testi' creates="/tmp/testi"` = loin
 
-<img src="kuvat/pkg.png" width="60%">
+<img src="kuvat/cmd.png" width="60%">
 
-ID = 
-Function = (mitä funktiota käytetty)
-Result = 
-Comment = 
-Started = (milloin suoritus alkanut)
-Duration = 
-Changes = 
-Summary for local = 
-Total states run = 
-Total run time =
+ID = touch /tmp/testi
+
+Function = cmd.run (mitä funktiota käytetty)
+
+Result = True (onnistunut suoritus)
+
+Comment = Command "touch /tmp/testi" run ()
+
+Started = 17.31 (milloin suoritus alkanut)
+
+Duration = 725.399 ms (kesto)
+
+Changes = mitä muutoksia tehty
+
+Total states run = 1 (montako tehtävää suoritettu)
+
+Total run time = 725.399 ms (kokonaiskesto)
 
 ## d) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee.
 
