@@ -107,7 +107,7 @@ ID = /tmp/testitiedosto (tiedosto mikä luotiin)
 
 Function = file.managed (mitä funktiota käytetty)
 
-Result =  True (onnistunut fuktion suoritus)
+Result =  True (onnistunut suoritus)
 
 Comment = Empty file (tyhjä tiedosto)
 
@@ -156,20 +156,36 @@ Userin avulla hallitaan käyttäjiä ja niiden asetuksia
 <img src="kuvat/user1.png" width="60%">
 <img src="kuvat/user2.png" width="60%">
 
-ID = 
-Function = (mitä funktiota käytetty)
-Result = 
-Comment = 
-Started = (milloin suoritus alkanut)
-Duration = 
-Changes = 
-Summary for local = 
-Total states run = 
-Total run time =
+ID = user1 (uuden käyttäjän nimi)
+
+Function = user.present (mitä funktiota käytetty)
+
+Result = True (onnistunut suoritus)
+
+Comment = New user user1 created (uusi käyttäjä luotu)
+
+Started = 17.13 (milloin suoritus alkanut)
+
+Duration = 70.235 ms (kesto)
+
+Changes = muutokset
+  groups = 
+  
+  home = /home/user1/ (käyttäjän kotihakemisto)
+  
+  name = user1 (käyttäjän nimi)
+  
+  shell = /bin/sh ()
+  
+  uid = 1001 ()
+
+Total states run = 1 (montako tehtävää suoritettu)
+
+Total run time = 70.235 ms (kokonaiskesto)
 
 ## cmd
 
-Cmdn avulla'
+Cmdn avulla 
 
 `` 
 
