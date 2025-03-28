@@ -74,7 +74,7 @@ Pkgn avulla hallinnoisaan ohjelmien asennusta.
 
 `sudo salt-call --local -l info state.single pkg.installed tree` = asensin Treen
 
-<img src="kuvat/pkg.png" width="50%">
+<img src="kuvat/pkg.png" width="60%">
 
 ID = Tree (paketin nimi)
 
@@ -101,7 +101,7 @@ Filen avulla hallinnoidaan tiedostoja.
 
 `sudo salt-call --local -l info state.single file.managed /tmp/testitiedosto` = loin testitiedoston
 
-<img src="kuvat/file.png" width="50%">
+<img src="kuvat/file.png" width="60%">
 
 ID = /tmp/testitiedosto
 
@@ -127,7 +127,7 @@ Servicen avulla
 
 `sudo salt-call --local -l info state.single service.running apache2 enable=True`
 
-<img src="kuvat/pkg.png" width="50%">
+<img src="kuvat/service.png" width="60%">
 
 ID = 
 Function = 
@@ -146,7 +146,7 @@ Userin avulla
 
 ``
 
-<img src="kuvat/pkg.png" width="50%">
+<img src="kuvat/pkg.png" width="60%">
 
 ID = 
 Function = 
@@ -165,7 +165,7 @@ Cmdn avulla'
 
 `` 
 
-<img src="kuvat/pkg.png" width="50%">
+<img src="kuvat/pkg.png" width="60%">
 
 ID = 
 Function = 
