@@ -66,6 +66,8 @@ Tämän jälkeen Saltin virallinen asennus:
 
 `sudo salt-call --version`= tarkistin vielä, että Salt varmasti asentunut. Sain onnistuneen vastauksen
 
+<img src="kuvat/salt_version.png" width="60%">
+
 ## c) Viisi tärkeintä. Näytä Linuxissa esimerkit viidestä tärkeimmästä Saltin tilafunktiosta: pkg, file, service, user, cmd. Analysoi ja selitä tulokset.
 
 ## pkg
