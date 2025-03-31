@@ -230,8 +230,7 @@ Seuraavat kerrat:
 Lopputulos pysyi siis koko ajan samana.
 
 
-
-Lähteet:
+## Lähteet:
 
 Karvinen, T. 2025. Palvelinten hallinta: Läksyt. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/#laksyt Luettu: 27.3.2025
 
