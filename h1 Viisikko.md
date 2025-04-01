@@ -52,11 +52,11 @@ Saltin asennus virtuaalikoneelle:
 
 Ennen Saltin asennusta varten lisäsin
 
-`mkdir -p /etc/apt/keyrings` = loin hakemiston, johon Saltin GPG-avaimet tallennetaan
+`mkdir -p /etc/apt/keyrings` = varmistin, että keyrings-kansio on olemassa
 
-`curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp` = latasin ja tallensin Saltin GPG-avaimen
+`curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp` = latasin julkisen avaimen
 
-`curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | sudo tee /etc/apt/sources.list.d/salt.sources` = 
+`curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | sudo tee /etc/apt/sources.list.d/salt.sources` = loin apt repo määritystiedoston
 
 Tämän jälkeen Saltin virallinen asennus:
 
