@@ -50,7 +50,7 @@ Asensin Debian 12-Bookwormin virtuaalikoneelleni. Asennus onnistui ilman ongelmi
 ## b) Asenna Salt (salt-minion) Linuxille (uuteen virtuaalikoneeseesi)
 Saltin asennus virtuaalikoneelle:
 
-Ennen Saltin asennusta varten lisäsin
+Ennen Saltin asennusta:
 
 `mkdir -p /etc/apt/keyrings` = varmistin, että keyrings-kansio on olemassa
 
