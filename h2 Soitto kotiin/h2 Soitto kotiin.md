@@ -6,11 +6,18 @@ Viikon 2 tehtävät:
 
 ## Two Machine Virtual Network With Debian 11 Bullseye and Vagrant
 
-- 
+- Vagrantin avulla kahden koneen virtuaaliverkko pystyyn nopeasti
+- Asenna Vagrant
+- Luo uusi hakemisto projektille ja tallenna Vagrantfile sinne. Vagrantfile sisältää 
+- SSH-yhteys virtuaalikoneisiin
+- Molemmat koneet voivat kommunikoida keskenään ja käyttää Internetiä
+- Virtuaalikoneet voi tuhota nopeasti
+- Hyvä tapa harjoitella: tee, testaa, tuhoa ja aloita alusta
+- Jos kaikki toimii, olet valmis. Jos ei, jatka vianmääritykseen
 
 ## Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux
 
--
+- 
 
 
 
