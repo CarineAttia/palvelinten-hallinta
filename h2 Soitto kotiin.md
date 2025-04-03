@@ -1,18 +1,22 @@
-## h2 Soitto kotiin
+# h2 Soitto kotiin
 
 Viikon 2 tehtävät:
 
-# x) Lue ja tiivistä.
+## x) Lue ja tiivistä.
 
-# Two Machine Virtual Network With Debian 11 Bullseye and Vagrant
+## Two Machine Virtual Network With Debian 11 Bullseye and Vagrant
 
 - 
 
-# Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux
+## Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux
+
+-
 
 
 
-# Salt Vagrant - automatically provision one master and two slaves
+## Salt Vagrant - automatically provision one master and two slaves
+
+-
 
 
 Lähteet:
