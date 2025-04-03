@@ -2,7 +2,7 @@
 
 Viikon 2 tehtävät:
 
-## x) Lue ja tiivistä.
+# x) Lue ja tiivistä.
 
 # Two Machine Virtual Network With Debian 11 Bullseye and Vagrant
 
