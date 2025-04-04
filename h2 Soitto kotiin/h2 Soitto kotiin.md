@@ -8,7 +8,7 @@ Viikon 2 tehtävät:
 
 - Vagrantin avulla kahden koneen virtuaaliverkko pystyyn nopeasti
 - Asenna Vagrant
-- Luo uusi hakemisto projektille ja tallenna Vagrantfile sinne. Vagrantfile sisältää 
+- Luo uusi hakemisto projektille ja tallenna Vagrantfile sinne
 - SSH-yhteys virtuaalikoneisiin
 - Molemmat koneet voivat kommunikoida keskenään ja käyttää Internetiä
 - Virtuaalikoneet voi tuhota nopeasti
@@ -48,11 +48,27 @@ Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
 
 ## b) Linux Vagrant. Tee Vagrantilla uusi Linux-virtuaalikone.
 
+Seuraavaksi loin Vagrantfilen Windowsin Command Promptissa. Vagrantfile on tiedosto, joka sisältää tietoa siitä millaisia koneita projektissa tarvitaan, miten ne määritellään ja käynnistetään. 
 
+    $ mkdir twohost   # Loin twohost-hakemiston
+    $ cd twohost   # Siirryin twohost-hakemistoon
+    $ notepad Vagrantfile   # Loin Vagrantfilen Notepadilla
+
+Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, joilla on mm. omat nimet ja IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
+
+<img src="vagrantfile_kuva.png" width="60%">
+
+Vagrantfilen luonnin jälkeen koitin käynnistää Vagrantia.
+
+    $ vagrant up   # Käynnistää Vagrantin
+
+Sain kuitenkin virheilmoituksen, että olen komentorivillä väärässä hakemistossa, koska pitäisi olla juuri siinä, missä Vagrant sijaitsee. Olin mielestäni ihan oikeassa hakemistossa, eli hakemistossa twohost ja tarkistin sen vielä komennolla `$ dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni törmäsin tietoon, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai se ei toimi. Muokkasin tiedostoni nimeä ja poistin lopusta .txt ja kokeilin `$ vagrant up` komentoa uudelleen ja alkoi heti toimia!
 
 
 
 ## c) Kaksin kaunihimpi. Tee kahden Linux-tietokoneen verkko Vagrantilla. Osoita, että koneet voivat pingata toisiaan.
+
+
 
 ## d) Herra-orja verkossa. Demonstroi Salt herra-orja arkkitehtuurin toimintaa kahden Linux-koneen verkossa, jonka teit Vagrantilla. Asenna toiselle koneelle salt-master, toiselle salt-minion. Laita orjan /etc/salt/minion -tiedostoon masterin osoite. Hyväksy avain ja osoita, että herra voi komentaa orjakonetta.
 
@@ -61,13 +77,23 @@ Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
 
 Lähteet:
 
+Karvinen, T. 2025. Läksyt: h2 Soitto kotiin. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/ Luettu: 3.4.2025
+
 Karvinen, T. 2021. Two Machine Virtual Network With Debian 11 Bullseye and Vagrant. Luettavissa: https://terokarvinen.com/2021/two-machine-virtual-network-with-debian-11-bullseye-and-vagrant/ Luettu: 3.4.2025
 
 Karvinen, T. 2018. Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux. Luettavissa: https://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/?fromSearch=salt%20quickstart%20salt%20stack%20master%20and%20slave%20on%20ubuntu%20linux Luettu: 3.4.2025
 
-Karvinen, T. 2023. Salt Vagrant - automatically provision one master and two slaves. Luettavissa: https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file Luettu: 
+Karvinen, T. 2023. Salt Vagrant - automatically provision one master and two slaves. Luettavissa: https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file Luettu: 3.4.2025
 
-Hashi Corp. Install Vagrant. Luettavissa: https://developer.hashicorp.com/vagrant/install Luettu: 4.4.2025
+HashiCorp. Install Vagrant. Luettavissa: https://developer.hashicorp.com/vagrant/install Luettu: 4.4.2025
+
+HashiCorp. Vagrantfile. Luettavissa: https://developer.hashicorp.com/vagrant/docs/vagrantfile Luettu: 4.4.2025
+
+Skytap. Creating a Vagrantfile. Luettavissa: https://help.skytap.com/vagrant-creating-a-vagrantfile.html#ManuallycreateaVagrantfile Luettu: 4.4.2025
+
+
+
+
 
 
 
