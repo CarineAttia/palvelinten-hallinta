@@ -57,7 +57,7 @@ Seuraavaksi loin Vagrantfilen Windowsin Command Promptissa. Vagrantfile on tiedo
     cd twohost   #Siirryin twohost-hakemistoon
     notepad Vagrantfile   #Loin Vagrantfilen Notepadilla
 
-Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, t001 ja t002 ja niille IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
+Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, t001 ja t002 ja mm. niille IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
 
 <img src="vagrantfile_kuva.png" width="60%">
 
