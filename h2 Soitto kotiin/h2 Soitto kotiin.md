@@ -33,6 +33,8 @@ Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen
 
     vagrant --version #Tulostaa Vagrantin versionumeron
 
+<img src="kuvat/vagrant_version.png" width="60%">
+
 
 Sain onnistuneen vastauksen.
 
