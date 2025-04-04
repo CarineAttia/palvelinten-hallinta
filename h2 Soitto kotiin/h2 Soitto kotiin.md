@@ -31,7 +31,7 @@ Aloitin tehtävän asentamalla Vagrantin. Vagrantin avulla luodaan ja hallitaan 
 
 Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut. Avasin Command Promptin ja syötin komennon
 
-    $ vagrant --version #Tulostaa Vagrantin versionumeron
+    $ vagrant --version    # Tulostaa Vagrantin versionumeron
 
 <img src="vagrant_version.png" width="60%">
 
