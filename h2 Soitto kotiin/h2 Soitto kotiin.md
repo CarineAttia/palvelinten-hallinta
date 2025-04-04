@@ -38,7 +38,7 @@ Aloitin tehtävän asentamalla Vagrantin. Vagrantin avulla luodaan ja hallitaan 
 
 Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut. Avasin Command Promptin ja syötin komennon
 
-    $ vagrant --version    # Tulostaa Vagrantin versionumeron
+    $ vagrant --version    #Tulostaa Vagrantin versionumeron
 
 <img src="vagrant_version.png" width="60%">
 
@@ -53,9 +53,9 @@ Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
 
 Seuraavaksi loin Vagrantfilen Windowsin Command Promptissa. Vagrantfile on tiedosto, joka sisältää tietoa siitä millaisia koneita projektissa tarvitaan, miten ne määritellään ja käynnistetään. 
 
-    mkdir twohost   # Loin twohost-hakemiston
-    cd twohost   # Siirryin twohost-hakemistoon
-    notepad Vagrantfile   # Loin Vagrantfilen Notepadilla
+    mkdir twohost   #Loin twohost-hakemiston
+    cd twohost   #Siirryin twohost-hakemistoon
+    notepad Vagrantfile   #Loin Vagrantfilen Notepadilla
 
 Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, t001 ja t002 ja niille IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
 
@@ -63,7 +63,7 @@ Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikone
 
 Vagrantfilen luonnin jälkeen annoin komennon:
 
-    vagrant up   # Luo, konfiguroi ja käynnistää virtuaalikoneet Vagrantfile-tiedoston mukaisesti.
+    vagrant up   #Luo, konfiguroi ja käynnistää virtuaalikoneet Vagrantfile-tiedoston mukaisesti.
 
 Sain kuitenkin virheilmoituksen, että olen komentorivillä väärässä hakemistossa, koska pitäisi olla juuri siellä, missä Vagrant sijaitsee. Olin mielestäni ihan oikeassa hakemistossa, eli hakemistossa twohost ja tarkistin sen vielä komennolla `dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni törmäsin tietoon, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai se ei toimi. Muokkasin tiedostoni nimeä ja poistin lopusta .txt ja kokeilin uudelleen `vagrant up` komentoa. Nyt se vihdoin toimi!
 
@@ -73,11 +73,11 @@ Molemmat uudet koneet käynnistyivät ja ilmestyivät Virtualboxiin.
 
 Koneiden käynnistymisen jälkeen kirjauduin ensimmäiseen virtuaalikoneeseen t001 komennolla:
 
-    vagrant ssh t001   # Avasin SSH-yhteyden t001-koneeseen komentoriviltä
+    vagrant ssh t001   #Avasin SSH-yhteyden t001-koneeseen komentoriviltä
 
 SSH-yhteyden muodostamisen jälkeen testasin, että koneet pysytvät kommunikoimaan keskenään. Annoin t001-koneessa komennon:
 
-    ping -c 1 192.168.88.102 # Pingasin t002-konetta yhden kerran
+    ping -c 1 192.168.88.102   #Pingasin t002-konetta yhden kerran
 
 Vastauksena sain pingauksen onnistuneen, koneet voivat siis kommunikoida keskenään.
 
@@ -85,15 +85,15 @@ Vastauksena sain pingauksen onnistuneen, koneet voivat siis kommunikoida kesken�
 
 Poistuin t001-koneesta komennolla:
 
-    exit   # Katkaisin SSH-yhteyden t001-koneeseen
+    exit   #Katkaisin SSH-yhteyden t001-koneeseen
 
 Palasin takaisin isäntäkoneelleni Windowsille. Kirjauduin seuraavaksi t002-koneelle:
 
-    vagrant ssh t002   # Avasin SSH-yhteyden t002-koneeseen komentoriviltä 
+    vagrant ssh t002   #Avasin SSH-yhteyden t002-koneeseen komentoriviltä 
 
 Annoin t002-koneesta komennon:
 
-    ping -c 1 192.168.88.101   # Pingasin t001-konetta yhden kerran
+    ping -c 1 192.168.88.101   #Pingasin t001-konetta yhden kerran
 
 Vastauksena sain pingauksen onnistuneen.
 
