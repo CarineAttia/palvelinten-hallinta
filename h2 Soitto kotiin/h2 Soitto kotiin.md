@@ -48,25 +48,24 @@ Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
 
 ## b) Linux Vagrant. Tee Vagrantilla uusi Linux-virtuaalikone.
 
+
+## c) Kaksin kaunihimpi. Tee kahden Linux-tietokoneen verkko Vagrantilla. Osoita, että koneet voivat pingata toisiaan.
+
 Seuraavaksi loin Vagrantfilen Windowsin Command Promptissa. Vagrantfile on tiedosto, joka sisältää tietoa siitä millaisia koneita projektissa tarvitaan, miten ne määritellään ja käynnistetään. 
 
-    $ mkdir twohost   # Loin twohost-hakemiston
-    $ cd twohost   # Siirryin twohost-hakemistoon
-    $ notepad Vagrantfile   # Loin Vagrantfilen Notepadilla
+    mkdir twohost   # Loin twohost-hakemiston
+    cd twohost   # Siirryin twohost-hakemistoon
+    notepad Vagrantfile   # Loin Vagrantfilen Notepadilla
 
 Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, joilla on mm. omat nimet ja IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
 
 <img src="vagrantfile_kuva.png" width="60%">
 
-Vagrantfilen luonnin jälkeen koitin käynnistää Vagrantia.
+Vagrantfilen luonnin jälkeen annoin komennon:
 
-    $ vagrant up   # Käynnistää Vagrantin
+    vagrant up   # Luo, konfiguroi ja käynnistää virtuaalikoneet Vagrantfile-tiedoston mukaisesti.
 
-Sain kuitenkin virheilmoituksen, että olen komentorivillä väärässä hakemistossa, koska pitäisi olla juuri siinä, missä Vagrant sijaitsee. Olin mielestäni ihan oikeassa hakemistossa, eli hakemistossa twohost ja tarkistin sen vielä komennolla `$ dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni törmäsin tietoon, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai se ei toimi. Muokkasin tiedostoni nimeä ja poistin lopusta .txt ja kokeilin `$ vagrant up` komentoa uudelleen ja alkoi heti toimia!
-
-
-
-## c) Kaksin kaunihimpi. Tee kahden Linux-tietokoneen verkko Vagrantilla. Osoita, että koneet voivat pingata toisiaan.
+Sain kuitenkin virheilmoituksen, että olen komentorivillä väärässä hakemistossa, koska pitäisi olla juuri siellä, missä Vagrant sijaitsee. Olin mielestäni ihan oikeassa hakemistossa, eli hakemistossa twohost ja tarkistin sen vielä komennolla `dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni törmäsin tietoon, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai se ei toimi. Muokkasin tiedostoni nimeä ja poistin lopusta .txt ja kokeilin uudelleen `vagrant up` komentoa. Toimi!
 
 
 
