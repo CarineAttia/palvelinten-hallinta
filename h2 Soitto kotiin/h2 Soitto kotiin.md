@@ -17,9 +17,16 @@ Viikon 2 tehtävät:
 
 ## Salt Quickstart – Salt Stack Master and Slave on Ubuntu Linux
 
-- 
-
-
+- Saltilla voi kontrolloida lukuisia koneita
+- Slavet voivat sijaita missä vain ja silti niitä voi kontrolloida
+- Vain masterin on oltava julkinen osoite
+- Yksi master ja useita slaveja
+- Asenna master. Jos masterilla on palomuuri, on porttien 4505/TCP ja 4506/TCP oltava auki
+- Asenna slave. Slaven pitää tietää missä master sijaitsee
+- Käynnistä uudelleen slave daemon saadaksesi uudet asetukset käyttöön ja yhdistääksesi slave masteriin
+- Hyväksy slave key masterilla
+- Testaa, jos sait vastaksen slavelta, olet onnistunut
+- Nyt voit kokeilla muita komentoja slaveillesi
 
 ## Salt Vagrant - automatically provision one master and two slaves
 
