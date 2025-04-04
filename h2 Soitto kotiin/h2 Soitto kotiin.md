@@ -29,19 +29,19 @@ Viikon 2 tehtävät:
 
 Aloitin tehtävän asentamalla Vagrantin. Vagrantin avulla luodaan ja hallitaan virtuaalikoneita. 
 
-Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut.
+Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut. Avasin Command Promptin ja syötin komennon
 
     vagrant --version #Tulostaa Vagrantin versionumeron
 
 <img src="vagrant_version.png" width="60%">
 
-
 Sain onnistuneen vastauksen.
 
 Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
 
-
 ## b) Linux Vagrant. Tee Vagrantilla uusi Linux-virtuaalikone.
+
+
 
 ## c) Kaksin kaunihimpi. Tee kahden Linux-tietokoneen verkko Vagrantilla. Osoita, että koneet voivat pingata toisiaan.
 
