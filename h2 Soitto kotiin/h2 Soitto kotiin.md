@@ -33,7 +33,7 @@ Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen
 
     vagrant --version #Tulostaa Vagrantin versionumeron
 
-<img src="h2 Soitto kotiin/vagrant_version.png" width="60%">
+<img src="vagrant_version.png" width="60%">
 
 
 Sain onnistuneen vastauksen.
