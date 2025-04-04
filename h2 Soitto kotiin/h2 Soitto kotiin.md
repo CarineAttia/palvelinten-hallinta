@@ -27,6 +27,17 @@ Viikon 2 tehtävät:
 
 ## a) Hello Vagrant! Osoita jollain komennolla, että Vagrant on asennettu (esim tulostaa vagrantin versionumeron). Jos et ole vielä asentanut niitä, raportoi myös Vagrant ja VirtualBox asennukset. (Jos Vagrant ja VirtualBox on jo asennettu, niiden asennusta ei tarvitse tehdä eikä raportoida uudelleen.)
 
+Aloitin tehtävän asentamalla Vagrantin. Vagrantin avulla luodaan ja hallitaan virtuaalikoneita. 
+
+Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut.
+
+    vagrant --version #Tulostaa Vagrantin versionumeron
+
+
+Sain onnistuneen vastauksen.
+
+Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
+
 
 ## b) Linux Vagrant. Tee Vagrantilla uusi Linux-virtuaalikone.
 
@@ -45,6 +56,8 @@ Karvinen, T. 2018. Salt Quickstart – Salt Stack Master and Slave on Ubuntu Lin
 
 Karvinen, T. 2023. Salt Vagrant - automatically provision one master and two slaves. Luettavissa: https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file Luettu: 
 
-https://developer.hashicorp.com/vagrant/install Luettu: 
+Hashi Corp. Install Vagrant. Luettavissa: https://developer.hashicorp.com/vagrant/install Luettu: 4.4.2025
+
+
 
 
