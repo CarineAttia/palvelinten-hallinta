@@ -57,7 +57,7 @@ Seuraavaksi loin Vagrantfilen Windowsin Command Promptissa. Vagrantfile on tiedo
     cd twohost   # Siirryin twohost-hakemistoon
     notepad Vagrantfile   # Loin Vagrantfilen Notepadilla
 
-Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, joilla on mm. omat nimet ja IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
+Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, t001 ja t002 ja niille IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
 
 <img src="vagrantfile_kuva.png" width="60%">
 
@@ -65,8 +65,39 @@ Vagrantfilen luonnin jälkeen annoin komennon:
 
     vagrant up   # Luo, konfiguroi ja käynnistää virtuaalikoneet Vagrantfile-tiedoston mukaisesti.
 
-Sain kuitenkin virheilmoituksen, että olen komentorivillä väärässä hakemistossa, koska pitäisi olla juuri siellä, missä Vagrant sijaitsee. Olin mielestäni ihan oikeassa hakemistossa, eli hakemistossa twohost ja tarkistin sen vielä komennolla `dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni törmäsin tietoon, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai se ei toimi. Muokkasin tiedostoni nimeä ja poistin lopusta .txt ja kokeilin uudelleen `vagrant up` komentoa. Toimi!
+Sain kuitenkin virheilmoituksen, että olen komentorivillä väärässä hakemistossa, koska pitäisi olla juuri siellä, missä Vagrant sijaitsee. Olin mielestäni ihan oikeassa hakemistossa, eli hakemistossa twohost ja tarkistin sen vielä komennolla `dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni törmäsin tietoon, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai se ei toimi. Muokkasin tiedostoni nimeä ja poistin lopusta .txt ja kokeilin uudelleen `vagrant up` komentoa. Nyt se vihdoin toimi!
 
+Molemmat uudet koneet käynnistyivät ja ilmestyivät Virtualboxiin.
+
+<img src="two_host.png" width="40%">
+
+Koneiden käynnistymisen jälkeen kirjauduin ensimmäiseen virtuaalikoneeseen t001 komennolla:
+
+    vagrant ssh t001   # Avasin SSH-yhteyden t001-koneeseen komentoriviltä
+
+SSH-yhteyden muodostamisen jälkeen testasin, että koneet pysytvät kommunikoimaan keskenään. Annoin t001-koneessa komennon:
+
+    ping -c 1 192.168.88.102 # Pingasin t002-konetta yhden kerran
+
+Vastauksena sain pingauksen onnistuneen, koneet voivat siis kommunikoida keskenään.
+
+<img src="ping_t001.png" width="60%">
+
+Poistuin t001-koneesta komennolla:
+
+    exit   # Katkaisin SSH-yhteyden t001-koneeseen
+
+Palasin takaisin isäntäkoneelleni Windowsille. Kirjauduin seuraavaksi t002-koneelle:
+
+    vagrant ssh t002   # Avasin SSH-yhteyden t002-koneeseen komentoriviltä 
+
+Annoin t002-koneesta komennon:
+
+    ping -c 1 192.168.88.101   # Pingasin t001-konetta yhden kerran
+
+Vastauksena sain pingauksen onnistuneen.
+
+<img src="ping_t002.png" width="60%">
 
 
 ## d) Herra-orja verkossa. Demonstroi Salt herra-orja arkkitehtuurin toimintaa kahden Linux-koneen verkossa, jonka teit Vagrantilla. Asenna toiselle koneelle salt-master, toiselle salt-minion. Laita orjan /etc/salt/minion -tiedostoon masterin osoite. Hyväksy avain ja osoita, että herra voi komentaa orjakonetta.
