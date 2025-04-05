@@ -121,6 +121,8 @@ Vastauksena sain pingauksen onnistuneen.
 
 ## d) Herra-orja verkossa. Demonstroi Salt herra-orja arkkitehtuurin toimintaa kahden Linux-koneen verkossa, jonka teit Vagrantilla. Asenna toiselle koneelle salt-master, toiselle salt-minion. Laita orjan /etc/salt/minion -tiedostoon masterin osoite. Hyväksy avain ja osoita, että herra voi komentaa orjakonetta.
 
+
+
 ## e) Kokeile vähintään kahta tilaa verkon yli (viisikosta: pkg, file, service, user, cmd)
 
 
@@ -142,5 +144,5 @@ Skytap. Creating a Vagrantfile. Luettavissa: https://help.skytap.com/vagrant-cre
 
 Karvinen, T. Vagrant LibVirt - New virtual machine in 20 seconds. Luettavissa: https://terokarvinen.com/2024/vagrant-libvirt/ Luettu: 4.4.2025
 
-https://developer.hashicorp.com/vagrant/docs/cli/up Luettu: 4.4.2025
+HashiCorp. Up. Luettavissa: https://developer.hashicorp.com/vagrant/docs/cli/up Luettu: 4.4.2025
 
