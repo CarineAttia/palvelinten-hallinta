@@ -48,13 +48,26 @@ Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
 
 ## b) Linux Vagrant. Tee Vagrantilla uusi Linux-virtuaalikone.
 
+Tarkoituksenani oli luoda uusi virtuaalikone Vagrantilla. Aloitin tehtävän luomalla uuden hakemiston koneelle
+
+    mkdir uusi-kone   #Loin uusi-kone -hakemiston
+    cd uusi-kone   #Siirryin uusi-kone -hakemistoon
+
+Seuraavaksi loin Vagrantfilen. Vagrantfile on tiedosto, joka sisältää tietoa siitä millaisia koneita projektissa tarvitaan, miten ne määritellään ja käynnistetään. 
+
+    vagrant init debian/bullseye64   #Loin Vagrantfilen 
+
+<img src="mkdir_uusi-kone.png" width="60%">
+
+<img src="uusi-kone.png" width="60%">
+
 
 ## c) Kaksin kaunihimpi. Tee kahden Linux-tietokoneen verkko Vagrantilla. Osoita, että koneet voivat pingata toisiaan.
 
-Seuraavaksi loin Vagrantfilen Windowsin Command Promptissa. Vagrantfile on tiedosto, joka sisältää tietoa siitä millaisia koneita projektissa tarvitaan, miten ne määritellään ja käynnistetään. 
+Seuraavaksi tarkoituksenani oli luoda kaksi virtuaalikonetta. Aloitin taas luomalla uuden hakemiston ja Vagrantfilen.
 
-    mkdir twohost   #Loin twohost-hakemiston
-    cd twohost   #Siirryin twohost-hakemistoon
+    mkdir twohost   #Loin twohost -hakemiston
+    cd twohost   #Siirryin twohost -hakemistoon
     notepad Vagrantfile   #Loin Vagrantfilen Notepadilla
 
 Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, t001 ja t002 ja mm. niille IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
@@ -99,7 +112,6 @@ Vastauksena sain pingauksen onnistuneen.
 
 <img src="ping_t002.png" width="60%">
 
-
 ## d) Herra-orja verkossa. Demonstroi Salt herra-orja arkkitehtuurin toimintaa kahden Linux-koneen verkossa, jonka teit Vagrantilla. Asenna toiselle koneelle salt-master, toiselle salt-minion. Laita orjan /etc/salt/minion -tiedostoon masterin osoite. Hyväksy avain ja osoita, että herra voi komentaa orjakonetta.
 
 ## e) Kokeile vähintään kahta tilaa verkon yli (viisikosta: pkg, file, service, user, cmd)
@@ -121,10 +133,5 @@ HashiCorp. Vagrantfile. Luettavissa: https://developer.hashicorp.com/vagrant/doc
 
 Skytap. Creating a Vagrantfile. Luettavissa: https://help.skytap.com/vagrant-creating-a-vagrantfile.html#ManuallycreateaVagrantfile Luettu: 4.4.2025
 
-
-
-
-
-
-
+Karvinen, T. Vagrant LibVirt - New virtual machine in 20 seconds. Luettavissa: https://terokarvinen.com/2024/vagrant-libvirt/ Luettu: 4.4.2025
 
