@@ -36,7 +36,7 @@ Viikon 2 tehtävät:
 
 Aloitin tehtävän asentamalla Vagrantin. Vagrantin avulla luodaan ja hallitaan virtuaalikoneita. 
 
-Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut. Avasin Command Promptin ja syötin komennon
+Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut. Avasin Command Promptin ja annoin komennon
 
     $ vagrant --version    #Tulostaa Vagrantin versionumeron
 
@@ -48,47 +48,54 @@ Virtualbox minulla jo oli asennettuna, joten sitä en tässä raportoi.
 
 ## b) Linux Vagrant. Tee Vagrantilla uusi Linux-virtuaalikone.
 
-Tarkoituksenani oli luoda uusi virtuaalikone Vagrantilla. Aloitin tehtävän luomalla uuden hakemiston koneelle
+Tarkoituksenani oli luoda yksi uusi virtuaalikone Vagrantilla. Aloitin tehtävän luomalla uuden hakemiston tätä konetta varten:
 
     mkdir uusi-kone   #Loin uusi-kone -hakemiston
     cd uusi-kone   #Siirryin uusi-kone -hakemistoon
 
-Seuraavaksi loin Vagrantfilen. Vagrantfile on tiedosto, joka sisältää tietoa siitä millaisia koneita projektissa tarvitaan, miten ne määritellään ja käynnistetään. 
+Seuraavaksi loin Vagrantfilen. Vagrantfile on tekstitiedosto, joka sisältää tietoa virtuaalikoneen asetuksista: mitä käyttöjärjestelmää käytetään, miten kone käynnistetään yms. Annoin komennon
 
-    vagrant init debian/bullseye64   #Loin Vagrantfilen 
+    vagrant init debian/bullseye64   #Loin Vagrantfilen, jossa määritellään, että virtuaalikone käyttää Debian Bullseye (64 bittinen) -käyttöjärjestelmää
+
+Tämän jälkeen käynnistin koneen:
+
+    vagrant up   #Luo, konfiguroi ja käynnistää virtuaalikoneen Vagrantfile-tiedoston mukaisesti
+
+vagrant up -komento on Vagrantin tärkein komento. Se luo virtuaalikoneen ja käynnistää sen. Jos kone on jo valmiina, komento vain käynnistää sen uudelleen.
 
 <img src="mkdir_uusi-kone.png" width="60%">
 
-<img src="uusi_kone.png" width="60%">
+Uusi kone ilmestyi myös Virtualboxiin näkyviin.
 
+<img src="uusi_kone.png" width="60%">
 
 ## c) Kaksin kaunihimpi. Tee kahden Linux-tietokoneen verkko Vagrantilla. Osoita, että koneet voivat pingata toisiaan.
 
-Seuraavaksi tarkoituksenani oli luoda kaksi virtuaalikonetta. Aloitin taas luomalla uuden hakemiston ja Vagrantfilen.
+Seuraavaksi tarkoituksenani oli luoda kaksi virtuaalikonetta. Aloitin taas luomalla uuden hakemiston ja Vagrantfilen:
 
     mkdir twohost   #Loin twohost -hakemiston
     cd twohost   #Siirryin twohost -hakemistoon
     notepad Vagrantfile   #Loin Vagrantfilen Notepadilla
 
-Vagrantfilen sisälle lisäsin tekstin, jossa määriteltiin kaksi virtuaalikonetta, t001 ja t002 ja mm. niille IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemiston sisälle.
+Vagrantfilen sisälle lisäsin koodin, jossa määriteltiin kaksi virtuaalikonetta, t001 ja t002 sekä niille mm. IP-osoitteet. Tiedosto tallennettiin luomani twohost-hakemistoon.
 
 <img src="vagrantfile_kuva.png" width="60%">
 
 Vagrantfilen luonnin jälkeen annoin komennon:
 
-    vagrant up   #Luo, konfiguroi ja käynnistää virtuaalikoneet Vagrantfile-tiedoston mukaisesti.
+    vagrant up   #Luo, konfiguroi ja käynnistää virtuaalikoneet Vagrantfile-tiedoston mukaisesti
 
-Sain kuitenkin virheilmoituksen, että olen komentorivillä väärässä hakemistossa, koska pitäisi olla juuri siellä, missä Vagrant sijaitsee. Olin mielestäni ihan oikeassa hakemistossa, eli hakemistossa twohost ja tarkistin sen vielä komennolla `dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni törmäsin tietoon, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai se ei toimi. Muokkasin tiedostoni nimeä ja poistin lopusta .txt ja kokeilin uudelleen `vagrant up` komentoa. Nyt se vihdoin toimi!
+Sain kuitenkin virheilmoituksen, että olin väärässä hakemistossa. Vagrantin komennot pitää suorittaa juuri siinä hakemistossa, missä Vagrantfile sijaitsee. Tarkistin sijaintini komennolla `dir`. Sielä Vagrantfile tosiaan sijaitsi, eli olin ihan oikeassa paikassa. Asiaa selvitellessäni minulle selvisi, että Vagrantfilen nimi pitää olla pelkästään Vagrantfile, .txt ei saa olla perässä tai Vagrant ei tunnista sitä. Muokkasin tiedoston nimeä ja poistin lopusta .txt ja kokeilin `vagrant up` komentoa uudelleen. Tämän jälkeen komento toimi.
 
 Molemmat uudet koneet käynnistyivät ja ilmestyivät Virtualboxiin.
 
-<img src="two_host.png" width="40%">
+<img src="two_host.png" width="25%">
 
-Koneiden käynnistymisen jälkeen kirjauduin ensimmäiseen virtuaalikoneeseen t001 komennolla:
+Koneiden käynnistymisen jälkeen kirjauduin ensimmäiseen virtuaalikoneeseen t001:
 
-    vagrant ssh t001   #Avasin SSH-yhteyden t001-koneeseen komentoriviltä
+    vagrant ssh t001   #Avasin SSH-yhteyden t001-koneeseen
 
-SSH-yhteyden muodostamisen jälkeen testasin, että koneet pysytvät kommunikoimaan keskenään. Annoin t001-koneessa komennon:
+Yhteyden muodostamisen jälkeen testasin, että koneet pysytvät kommunikoimaan keskenään. Annoin t001-koneessa komennon:
 
     ping -c 1 192.168.88.102   #Pingasin t002-konetta yhden kerran
 
@@ -100,9 +107,9 @@ Poistuin t001-koneesta komennolla:
 
     exit   #Katkaisin SSH-yhteyden t001-koneeseen
 
-Palasin takaisin isäntäkoneelleni Windowsille. Kirjauduin seuraavaksi t002-koneelle:
+Palasin isäntäkoneelleni. Kirjauduin seuraavaksi t002-koneelle:
 
-    vagrant ssh t002   #Avasin SSH-yhteyden t002-koneeseen komentoriviltä 
+    vagrant ssh t002   #Avasin SSH-yhteyden t002-koneeseen
 
 Annoin t002-koneesta komennon:
 
@@ -134,4 +141,6 @@ HashiCorp. Vagrantfile. Luettavissa: https://developer.hashicorp.com/vagrant/doc
 Skytap. Creating a Vagrantfile. Luettavissa: https://help.skytap.com/vagrant-creating-a-vagrantfile.html#ManuallycreateaVagrantfile Luettu: 4.4.2025
 
 Karvinen, T. Vagrant LibVirt - New virtual machine in 20 seconds. Luettavissa: https://terokarvinen.com/2024/vagrant-libvirt/ Luettu: 4.4.2025
+
+https://developer.hashicorp.com/vagrant/docs/cli/up Luettu: 4.4.2025
 
