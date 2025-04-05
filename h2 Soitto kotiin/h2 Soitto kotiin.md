@@ -59,7 +59,7 @@ Seuraavaksi loin Vagrantfilen. Vagrantfile on tiedosto, joka sisältää tietoa 
 
 <img src="mkdir_uusi-kone.png" width="60%">
 
-<img src="uusi-kone.png" width="60%">
+<img src="uusi_kone.png" width="60%">
 
 
 ## c) Kaksin kaunihimpi. Tee kahden Linux-tietokoneen verkko Vagrantilla. Osoita, että koneet voivat pingata toisiaan.
