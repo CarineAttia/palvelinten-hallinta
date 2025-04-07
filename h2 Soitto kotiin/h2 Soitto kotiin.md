@@ -121,6 +121,62 @@ Vastauksena sain pingauksen onnistuneen.
 
 ## d) Herra-orja verkossa. Demonstroi Salt herra-orja arkkitehtuurin toimintaa kahden Linux-koneen verkossa, jonka teit Vagrantilla. Asenna toiselle koneelle salt-master, toiselle salt-minion. Laita orjan /etc/salt/minion -tiedostoon masterin osoite. Hyväksy avain ja osoita, että herra voi komentaa orjakonetta.
 
+Tässä tehtävässä tarkoituksena oli demonstroida Saltin herra-orja-arkkitehtuuria kahden virtuaalikoneen verkossa. 
+
+Aloitin tehtävän Salt-masterin asennuksesta. Päätin, että t001-kone on master-kone.
+
+    vagrant ssh t001    #Avasin SSH-yhteyden t001-koneeseen
+
+    sudo mkdir -p /etc/apt/keyrings    # loin hakemiston
+    sudo apt-get update    #
+    sudo apt-get install curl    #
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
+
+Tämän jälkeen oli Salt-masterin asennuksen vuoro:
+
+    sudo apt-get update    #
+    sudo apt-get -y install salt-master    #
+
+Tarkistin vielä koneen IP-osoitteen:
+
+    hostname -I   #
+
+<img src="ping_t001.png" width="60%">
+
+IP-osoite oli oikea ja sama, mitä Vagrantfilessä oli määritelty. 
+
+Seuraavaksi siirryin t002-koneelle Salt-minionin asennukseen.
+
+    vagrant ssh t002   #
+
+Tein samat asennukset kuin masterille:
+
+    sudo mkdir -p /etc/apt/keyrings    # loin hakemiston
+    sudo apt-get update    #
+    sudo apt-get install curl    #
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
+
+Asensin Salt-minionin:
+
+    sudo apt-get update   #
+    sudo apt-get -y install salt-minion   #Asensin Salt-minionin
+
+Asennuksen jälkeen 
+
+    sudoedit /etc/salt/minion   #
+
+Lisäsin seuravaat tiedot:
+master: 192.168.88.101   #masterin IP-osoite
+id: t002   #minionin id
+
+Tallennuksen jälkeen käynnistin minion-palvelun uudelleen:
+
+   sudo systemctl restart salt.minion.service   #Käynnistin minion-palvelun uudelleen
+   sudo systemctl status salt.minion.service    #Varmistin, että palvelu on varmasti päällä
+
+Tämän jälkeen poistuin minionilta ja siirryin takaisin masterille. 
 
 
 ## e) Kokeile vähintään kahta tilaa verkon yli (viisikosta: pkg, file, service, user, cmd)
