@@ -25,14 +25,20 @@ Viikon 2 tehtävät:
 - Asenna slave. Slaven pitää tietää missä master sijaitsee
 - Käynnistä uudelleen slave daemon saadaksesi uudet asetukset käyttöön ja yhdistääksesi slave masteriin
 - Hyväksy slave key masterilla
-- Testaa, jos sait vastaksen slavelta, olet onnistunut tehtävässä
+- Testaa. Jos sait vastauksen slavelta, olet onnistunut tehtävässä
 - Nyt voit kokeilla muita komentoja slaveillesi
 
 ## Salt Vagrant - automatically provision one master and two slaves
 
-- Artikkeli kertoo miten Saltin avulla voi hallita useita koneita Vagrantin luomassa virtuaaliverkossa
-- 
-
+- Artikkeli kertoo, miten Saltilla voi hallita virtuaaikoneita Vagrantin avulla käyttämällä tilatiedostoja (states) 
+- Infra as code: 
+    - Salt tila määritellään init.sls -tiedostoon, jossa kuvataan haluttu lopputila, esim. olemassa oleva tiedosto
+    - Tiedosto kirjoitetaan YAML-muodossa. Sisennys kaksi välilyöntiä
+    - Komennolla `state.apply` master ohjaa minioneja toteuttamaan määritellyn tilan
+- top.sls:
+    - top.sls -tiedosto määrittää, mitä tiloja ajetaan millä minioneilla
+    - kun top.sls määritelty, tiloja voidaan ajaa ilman nimiä yksinkertaisesti komennolla `sudo salt '*' state.apply`
+      
 ## a) Hello Vagrant! Osoita jollain komennolla, että Vagrant on asennettu (esim tulostaa vagrantin versionumeron). Jos et ole vielä asentanut niitä, raportoi myös Vagrant ja VirtualBox asennukset. (Jos Vagrant ja VirtualBox on jo asennettu, niiden asennusta ei tarvitse tehdä eikä raportoida uudelleen.)
 
 Aloitin tehtävän asentamalla Vagrantin. Vagrantin avulla luodaan ja hallitaan virtuaalikoneita. 
