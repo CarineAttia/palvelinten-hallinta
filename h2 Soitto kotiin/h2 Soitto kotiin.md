@@ -207,6 +207,8 @@ Viimeisenä tehtävänä oli tarkoitus kokeilla, että Salt-master pystyy hallit
 
 Ensimmäinen tila: file
 
+Aloitin luomalla hakemiston:
+
     $ sudo mkdir -p /srv/salt/hello   #Loin hakemiston tilatiedostolle
     $ sudoedit /srv/salt/hello/init.sls   #Avasin YAML-muotoisen tilatiedoston muokattavaksi
 
@@ -215,20 +217,43 @@ Tiedoston sisälle kirjoitin:
 /tmp/infra-as-code:
   file.managed
 
-Tämä määrittelee Salt-tilan, jonka tarkoituksena on varmistaa, että minion-koneelle on olemassa tidosto nimeltä /tmp/infra-as-code. Määritys käyttää file.managed-toimintoa, mikä tarkoittaa, että Salt huolehtii tiedoston olemassaolosta ja luo sen, jos sitä ei ole. 
+Tämä määrittelee Salt-tilan, jonka tarkoituksena on varmistaa, että minion-koneelle on olemassa tidosto nimeltä /tmp/infra-as-code. Määritys käyttää file.managed -toimintoa, mikä tarkoittaa, että Salt huolehtii tiedoston olemassaolosta ja luo sen, jos sitä ei ole. 
 
 Ajoin komennon:
 
     $ sudo salt '*' state.apply hello   #Käskin masteria ajamaan hello-tilan kaikilla minioneilla, eli toteuttamaan siihen määritellyn tehtävän
 
-Vastaukseksi sain tilan onnistuneen (Result: True). Tiedosto luotiin minion-koneelle.
-
 <img src="file.managed.png" width="60%">
 
+Vastaukseksi sain tilan onnistuneen. Tiedosto luotiin minion-koneelle.
+Result: True = tila suoritettiin onnistuneesti
+Changes: new = uusi tiedosto /tmp/infra-as-code luotiin
+Summary for t002 = komento kohdistui minioniin t002
 
 Toinen tila: pkg
 
+Aloitin luomalla hakemiston:
+
+    $ sudo -p /srv/salt/install   #Loin hakemiston tilatiedostolle
+    $ sudoedit /srv/salt/install/init.sls   #Avasin YAML-muotoisen tilatiedoston muokattavaksi
+
+Tiedoston sisälle kirjoitin:
+
+htop:
+  pkg.installed
+
+Tämä kertoo Saltille, että minionille pitää asentaa htop-paketti, jos sitä ei vielä ole asennettu. Tila käyttää pkg.installed -toimintoa, joka huolehtii paketin asennuksesta ja asentaa sen, jos sitä ei ole. 
+
+Ajoin komennon:
+
+    $ sudo salt '*' state.apply install   #Käskin masteria ajamaan install-tilan kaikilla minioneilla
+
 <img src="htop.png" width="60%">
+
+Vastaukeksi sain tilan onnistuneen. htop asennettiin minion-koneelle.
+Result: True = tila suoritettiin onnistuneesti
+Changes: new = htop asennettiin
+Summary for t002 = komento kohdistui minioniin t002
 
 
 Lähteet:
@@ -251,3 +276,4 @@ Karvinen, T. Vagrant LibVirt - New virtual machine in 20 seconds. Luettavissa: h
 
 HashiCorp. Up. Luettavissa: https://developer.hashicorp.com/vagrant/docs/cli/up Luettu: 4.4.2025
 
+Lahti, O. 2018. Server management – Starting out with Salt. Luettavissa: https://oliverlahti.com/2018/04/02/server-management-starting-out-with-salt/?utm_source=chatgpt.com Luettu: 5.4.2025
