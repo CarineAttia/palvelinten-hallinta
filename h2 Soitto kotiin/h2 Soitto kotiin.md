@@ -112,7 +112,7 @@ Vastauksena sain pingauksen onnistuneen, koneet voivat siis kommunikoida kesken�
 
 Poistuin t001-koneesta komennolla:
 
-    exit   #Katkaisin SSH-yhteyden t001-koneeseen
+    $ exit   #Katkaisin SSH-yhteyden t001-koneeseen
 
 Palasin isäntäkoneelleni. Kirjauduin seuraavaksi t002-koneelle:
 
