@@ -203,6 +203,33 @@ Vastaus osoittaa, että master voi komentaa minionia.
 
 ## e) Kokeile vähintään kahta tilaa verkon yli (viisikosta: pkg, file, service, user, cmd)
 
+Viimeisenä tehtävänä oli tarkoitus kokeilla, että Salt-master pystyy hallitsemaan minionia käyttämällä vähintään kahta erilaista tilaa (state). Toteutin kokeilun file- ja pkg-tilojen avulla.
+
+Ensimmäinen tila: file
+
+    $ sudo mkdir -p /srv/salt/hello   #Loin hakemiston tilatiedostolle
+    $ sudoedit /srv/salt/hello/init.sls   #Avasin YAML-muotoisen tilatiedoston muokattavaksi
+
+Tiedoston sisälle kirjoitin:
+
+/tmp/infra-as-code:
+  file.managed
+
+Tämä määrittelee Salt-tilan, jonka tarkoituksena on varmistaa, että minion-koneelle on olemassa tidosto nimeltä /tmp/infra-as-code. Määritys käyttää file.managed-toimintoa, mikä tarkoittaa, että Salt huolehtii tiedoston olemassaolosta ja luo sen, jos sitä ei ole. 
+
+Ajoin komennon:
+
+    $ sudo salt '*' state.apply hello   #Käskin masteria ajamaan hello-tilan kaikilla minioneilla, eli toteuttamaan siihen määritellyn tehtävän
+
+Vastaukseksi sain tilan onnistuneen (Result: True). Tiedosto luotiin minion-koneelle.
+
+<img src="file.managed.png" width="60%">
+
+
+Toinen tila: pkg
+
+<img src="htop.png" width="60%">
+
 
 Lähteet:
 
