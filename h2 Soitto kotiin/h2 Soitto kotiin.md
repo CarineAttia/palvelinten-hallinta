@@ -205,7 +205,7 @@ Vastaus osoittaa, että master voi komentaa minionia.
 
 Viimeisenä tehtävänä oli tarkoitus kokeilla, että Salt-master pystyy hallitsemaan minionia käyttämällä vähintään kahta erilaista tilaa (state). Toteutin kokeilun file- ja pkg-tilojen avulla.
 
-Ensimmäinen tila: file
+## Ensimmäinen tila: file
 
 Aloitin luomalla hakemiston:
 
@@ -230,7 +230,7 @@ Result: True = tila suoritettiin onnistuneesti
 Changes: new = uusi tiedosto /tmp/infra-as-code luotiin
 Summary for t002 = komento kohdistui minioniin t002
 
-Toinen tila: pkg
+## Toinen tila: pkg
 
 Aloitin luomalla hakemiston:
 
