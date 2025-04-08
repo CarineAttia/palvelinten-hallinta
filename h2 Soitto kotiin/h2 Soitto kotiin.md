@@ -30,7 +30,8 @@ Viikon 2 tehtävät:
 
 ## Salt Vagrant - automatically provision one master and two slaves
 
--
+- Artikkeli kertoo miten Saltin avulla voi hallita useita koneita Vagrantin luomassa virtuaaliverkossa
+- 
 
 ## a) Hello Vagrant! Osoita jollain komennolla, että Vagrant on asennettu (esim tulostaa vagrantin versionumeron). Jos et ole vielä asentanut niitä, raportoi myös Vagrant ja VirtualBox asennukset. (Jos Vagrant ja VirtualBox on jo asennettu, niiden asennusta ei tarvitse tehdä eikä raportoida uudelleen.)
 
@@ -38,7 +39,7 @@ Aloitin tehtävän asentamalla Vagrantin. Vagrantin avulla luodaan ja hallitaan 
 
 Käytössäni Windows, joten latasin ensin asennustiedoston. Suoritin asennuksen ja sen jälkeen halusin vielä testata, onko Vagrant varmasti asentunut. Avasin Command Promptin ja annoin komennon
 
-    $ vagrant --version    #Tulostaa Vagrantin versionumeron
+    $ vagrant --version    #Tulostin Vagrantin versionumeron
 
 <img src="vagrant_version.png" width="60%">
 
@@ -127,57 +128,72 @@ Aloitin tehtävän Salt-masterin asennuksesta. Päätin, että t001-kone on mast
 
     vagrant ssh t001    #Avasin SSH-yhteyden t001-koneeseen
 
-    sudo mkdir -p /etc/apt/keyrings    # loin hakemiston
-    sudo apt-get update    #
-    sudo apt-get install curl    #
-    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
-    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
+Asensin Saltin repositoryn:
+
+    sudo mkdir -p /etc/apt/keyrings    #Varmistin, että keyrings-kansio on olemassa
+    sudo apt-get update    #Hain uusimmat tiedot ohjelmapaketeista
+    sudo apt-get install curl    #Asensin curlin
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #Loin uuden luottamussuhteen
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #Loin apt repo määritystiedoston
 
 Tämän jälkeen oli Salt-masterin asennuksen vuoro:
 
-    sudo apt-get update    #
-    sudo apt-get -y install salt-master    #
+    sudo apt-get update    #Hain uusimmat tiedot ohjelmapaketeista
+    sudo apt-get -y install salt-master    #Asensin Salt-masterin
 
 Tarkistin vielä koneen IP-osoitteen:
 
-    hostname -I   #
+    hostname -I   #Katsoin koneen IP-osoitteet
 
-<img src="ping_t001.png" width="60%">
-
-IP-osoite oli oikea ja sama, mitä Vagrantfilessä oli määritelty. 
+IP-osoite oli oikea ja sama, mikä Vagrantfilessä oli määritelty. 
 
 Seuraavaksi siirryin t002-koneelle Salt-minionin asennukseen.
 
-    vagrant ssh t002   #
+    vagrant ssh t002   #Avasin SSH-yhteyden t002-koneeseen
 
-Tein samat asennukset kuin masterille:
+Tein saman Saltin repon asennuksen kuin masterille ja sen jälkeen asensin Salt-minionin:
 
-    sudo mkdir -p /etc/apt/keyrings    # loin hakemiston
-    sudo apt-get update    #
-    sudo apt-get install curl    #
-    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
-    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #
-
-Asensin Salt-minionin:
-
-    sudo apt-get update   #
+    sudo apt-get update   #Hain uusimmat tiedot ohjelmapaketeista
     sudo apt-get -y install salt-minion   #Asensin Salt-minionin
 
 Asennuksen jälkeen 
 
-    sudoedit /etc/salt/minion   #
+    sudoedit /etc/salt/minion   #Muokkasin minionin asennustiedostoa
 
 Lisäsin seuravaat tiedot:
-master: 192.168.88.101   #masterin IP-osoite
-id: t002   #minionin id
+
+master: 192.168.88.101 (masterin IP-osoite)
+
+id: t002 (minionin id)
 
 Tallennuksen jälkeen käynnistin minion-palvelun uudelleen:
 
-   sudo systemctl restart salt.minion.service   #Käynnistin minion-palvelun uudelleen
-   sudo systemctl status salt.minion.service    #Varmistin, että palvelu on varmasti päällä
+    sudo systemctl restart salt.minion.service   #Käynnistin minion-palvelun uudelleen
+    sudo systemctl status salt.minion.service    #Varmistin, että palvelu on varmasti päällä
 
-Tämän jälkeen poistuin minionilta ja siirryin takaisin masterille. 
+<img src="minion_running.png" width="60%">
 
+Tämän jälkeen poistuin minionilta ja siirryin takaisin masterille. Tarkoituksena oli hyväksyä minionin avain masterilla, jotta yhteys voitiin muodostaa näiden välille. Annoin komennon:
+
+    sudo salt-key -A   #Siirryin hyväksymään minionin avaimen masterilla
+
+Vastauksena piti saada ilmoitus hyväksymättömästä avaimesta ja hyväksyä se, mutta odotettua avainta ei ilmestynyt listaan. En tiennyt mistä ongelma johtui, joten varmistin, että master- ja minion-palvelut ovat käynnissä ja yhteys niiden välillä toimi. Palvelut olivat päällä ja koneet pystyivät pingaamaan toisiaan kuten aikaisemminkin. Yritin monta kertaa käynnistää palvelut uudelleen ja tarkistaa asetukset, mutta mitään ei tapahtunut eikä avain ilmestynyt. Lopulta en keksinyt muuta kuin aloittaa koko asennus puhtaalta pöydältä, koska en yhtään tiennyt missä ongelma voisi olla. Ehkä välistä oli jäänyt joku asennus tai päivitys?
+
+Annoin komennon:
+
+    vagrant destroy   #Poistin t001 ja t002 koneet
+
+Annoin uudelleen `vagrant up` -komennon, jolla luotiin ja käynnistetttiin uudelleen Vagrantfilen määrittelyn mukaisesti. Tein samat vaiheet, mitkä on jo yllä kuvattu, eli t001:lle Salt-masterin asennuksen, t002:lle Salt-minionin asennuksen ja asetusten muokkauksen /etc/salt/minion- tiedostooon. Käynnistin palvelut uudelleen ja toivoin, että minionin avain ilmestyisi vihdoin näkyviin. Ja se ilmestyi! Hyväksyin avaimen.
+
+<img src="Näyttökuva 2025-04-06 142045.png" width="60%">
+
+Halusin vielä osoittaa, että master voi komentaa minionia. Annoin komennon:
+
+    sudo salt '*' cmd.run 'whoami'   #Master lähettää kaikille minioneille komennon 'whoami', joka palauttaa käyttäjänimen
+
+<img src="whoami.png" width="60%">
+
+Vastaus osoittaa, että master voi komentaa minionia.
 
 ## e) Kokeile vähintään kahta tilaa verkon yli (viisikosta: pkg, file, service, user, cmd)
 
