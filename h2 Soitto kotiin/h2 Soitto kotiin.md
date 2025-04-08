@@ -215,6 +215,7 @@ Aloitin luomalla hakemiston:
 Tiedoston sisälle kirjoitin:
 
 /tmp/infra-as-code:
+
   file.managed
 
 Tämä määrittelee Salt-tilan, jonka tarkoituksena on varmistaa, että minion-koneelle on olemassa tidosto nimeltä /tmp/infra-as-code. Määritys käyttää file.managed -toimintoa, mikä tarkoittaa, että Salt huolehtii tiedoston olemassaolosta ja luo sen, jos sitä ei ole. 
@@ -243,6 +244,7 @@ Aloitin luomalla hakemiston:
 Tiedoston sisälle kirjoitin:
 
 htop:
+
   pkg.installed
 
 Tämä kertoo Saltille, että minionille pitää asentaa htop-paketti, jos sitä ei vielä ole asennettu. Tila käyttää pkg.installed -toimintoa, joka huolehtii paketin asennuksesta ja asentaa sen, jos sitä ei ole. 
