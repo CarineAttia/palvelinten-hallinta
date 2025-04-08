@@ -104,7 +104,7 @@ Koneiden käynnistymisen jälkeen kirjauduin ensimmäiseen virtuaalikoneeseen t0
 
 Yhteyden muodostamisen jälkeen testasin, että koneet pysytvät kommunikoimaan keskenään. Annoin t001-koneessa komennon:
 
-    ping -c 1 192.168.88.102   #Pingasin t002-konetta yhden kerran
+    $ ping -c 1 192.168.88.102   #Pingasin t002-konetta yhden kerran
 
 Vastauksena sain pingauksen onnistuneen, koneet voivat siis kommunikoida keskenään.
 
@@ -120,7 +120,7 @@ Palasin isäntäkoneelleni. Kirjauduin seuraavaksi t002-koneelle:
 
 Annoin t002-koneesta komennon:
 
-    ping -c 1 192.168.88.101   #Pingasin t001-konetta yhden kerran
+    $ ping -c 1 192.168.88.101   #Pingasin t001-konetta yhden kerran
 
 Vastauksena sain pingauksen onnistuneen.
 
@@ -136,20 +136,20 @@ Aloitin tehtävän Salt-masterin asennuksesta. Päätin, että t001-kone on mast
 
 Asensin Saltin repositoryn:
 
-    sudo mkdir -p /etc/apt/keyrings    #Varmistin, että keyrings-kansio on olemassa
-    sudo apt-get update    #Hain uusimmat tiedot ohjelmapaketeista
-    sudo apt-get install curl    #Asensin curlin
-    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #Loin uuden luottamussuhteen
-    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #Loin apt repo määritystiedoston
+    $ sudo mkdir -p /etc/apt/keyrings    #Varmistin, että keyrings-kansio on olemassa
+    $ sudo apt-get update    #Hain uusimmat tiedot ohjelmapaketeista
+    $ sudo apt-get install curl    #Asensin curlin
+    $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #Loin uuden luottamussuhteen
+    $ curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp   #Loin apt repo määritystiedoston
 
 Tämän jälkeen oli Salt-masterin asennuksen vuoro:
 
-    sudo apt-get update    #Hain uusimmat tiedot ohjelmapaketeista
-    sudo apt-get -y install salt-master    #Asensin Salt-masterin
+    $ sudo apt-get update    #Hain uusimmat tiedot ohjelmapaketeista
+    $ sudo apt-get -y install salt-master    #Asensin Salt-masterin
 
 Tarkistin vielä koneen IP-osoitteen:
 
-    hostname -I   #Katsoin koneen IP-osoitteet
+    $ hostname -I   #Katsoin koneen IP-osoitteet
 
 IP-osoite oli oikea ja sama, mikä Vagrantfilessä oli määritelty. 
 
@@ -159,12 +159,12 @@ Seuraavaksi siirryin t002-koneelle Salt-minionin asennukseen.
 
 Tein saman Saltin repon asennuksen kuin masterille ja sen jälkeen asensin Salt-minionin:
 
-    sudo apt-get update   #Hain uusimmat tiedot ohjelmapaketeista
-    sudo apt-get -y install salt-minion   #Asensin Salt-minionin
+    $ sudo apt-get update   #Hain uusimmat tiedot ohjelmapaketeista
+    $ sudo apt-get -y install salt-minion   #Asensin Salt-minionin
 
 Asennuksen jälkeen 
 
-    sudoedit /etc/salt/minion   #Muokkasin minionin asennustiedostoa
+    $ sudoedit /etc/salt/minion   #Muokkasin minionin asennustiedostoa
 
 Lisäsin seuravaat tiedot:
 
@@ -174,14 +174,14 @@ id: t002 (minionin id)
 
 Tallennuksen jälkeen käynnistin minion-palvelun uudelleen:
 
-    sudo systemctl restart salt.minion.service   #Käynnistin minion-palvelun uudelleen
-    sudo systemctl status salt.minion.service    #Varmistin, että palvelu on varmasti päällä
+    $ sudo systemctl restart salt.minion.service   #Käynnistin minion-palvelun uudelleen
+    $ sudo systemctl status salt.minion.service    #Varmistin, että palvelu on varmasti päällä
 
 <img src="minion_running.png" width="60%">
 
 Tämän jälkeen poistuin minionilta ja siirryin takaisin masterille. Tarkoituksena oli hyväksyä minionin avain masterilla, jotta yhteys voitiin muodostaa näiden välille. Annoin komennon:
 
-    sudo salt-key -A   #Siirryin hyväksymään minionin avaimen masterilla
+    $ sudo salt-key -A   #Siirryin hyväksymään minionin avaimen masterilla
 
 Vastauksena piti saada ilmoitus hyväksymättömästä avaimesta ja hyväksyä se, mutta odotettua avainta ei ilmestynyt listaan. En tiennyt mistä ongelma johtui, joten varmistin, että master- ja minion-palvelut ovat käynnissä ja yhteys niiden välillä toimi. Palvelut olivat päällä ja koneet pystyivät pingaamaan toisiaan kuten aikaisemminkin. Yritin monta kertaa käynnistää palvelut uudelleen ja tarkistaa asetukset, mutta mitään ei tapahtunut eikä avain ilmestynyt. Lopulta en keksinyt muuta kuin aloittaa koko asennus puhtaalta pöydältä, koska en yhtään tiennyt missä ongelma voisi olla. Ehkä välistä oli jäänyt joku asennus tai päivitys?
 
@@ -195,7 +195,7 @@ Annoin uudelleen `vagrant up` -komennon, jolla luotiin ja käynnistetttiin uudel
 
 Halusin vielä osoittaa, että master voi komentaa minionia. Annoin komennon:
 
-    sudo salt '*' cmd.run 'whoami'   #Master lähettää kaikille minioneille komennon 'whoami', joka palauttaa käyttäjänimen
+    $ sudo salt '*' cmd.run 'whoami'   #Master lähettää kaikille minioneille komennon 'whoami', joka palauttaa käyttäjänimen
 
 <img src="whoami.png" width="60%">
 
