@@ -226,8 +226,11 @@ Ajoin komennon:
 <img src="file.managed.png" width="60%">
 
 Vastaukseksi sain tilan onnistuneen. Tiedosto luotiin minion-koneelle.
+
 Result: True = tila suoritettiin onnistuneesti
+
 Changes: new = uusi tiedosto /tmp/infra-as-code luotiin
+
 Summary for t002 = komento kohdistui minioniin t002
 
 ## Toinen tila: pkg
@@ -251,8 +254,11 @@ Ajoin komennon:
 <img src="htop.png" width="60%">
 
 Vastaukseksi sain tilan onnistuneen. htop asennettiin minion-koneelle.
+
 Result: True = tila suoritettiin onnistuneesti
+
 Changes: new = htop asennettiin
+
 Summary for t002 = komento kohdistui minioniin t002
 
 
