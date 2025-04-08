@@ -250,7 +250,7 @@ Ajoin komennon:
 
 <img src="htop.png" width="60%">
 
-Vastaukeksi sain tilan onnistuneen. htop asennettiin minion-koneelle.
+Vastaukseksi sain tilan onnistuneen. htop asennettiin minion-koneelle.
 Result: True = tila suoritettiin onnistuneesti
 Changes: new = htop asennettiin
 Summary for t002 = komento kohdistui minioniin t002
