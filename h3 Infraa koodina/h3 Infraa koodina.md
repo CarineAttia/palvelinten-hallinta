@@ -5,9 +5,31 @@ Viikon 3 tehtävät:
 ## x) Lue ja tiivistä.
 
 ## Tero Karvinen: Hello Salt Infra-as-code
-- d
+- Artikkelissa kuvataan, miten luodaan Salt-konfiguraatio, jolla varmistetaan, että tietty tekstitiedosto on olemassa
+- Asenna Salt
+- Luo kansio "hello" moduulillle. Moduulit asentavat, konfiguroivat ja käynnistävät asioita. Luotu kansio jaetaan myöhemmin kaikille minion-koneille
+- Kirjoita infraa koodina
+- Aja koodi. Saat selosteen siitä, mitä tapahtui
+- Tarkista, että tiedosto on olemassa
+- Kun koodin ajaa ensimmäisen kerran, se luo tiedoston. Seuraavilla kerroilla Salt tarkistaa, onko tiedosto jo olemassa. Koska se on jo luotu, se ei tee mitään = idempotenssi
+- Tärkeimmät tilat ovat pkg, file, service, user ja cmd
 
 ## Salt overview
+- Salt käyttää oletuksena YAML-renderöintiä tiedostoissa. Renderöinti tarkoittaa
+- YAML:n perussäännöt:
+  - data esitetään key: value -pareina
+  - Kaksoispiste ja yksi välilyönti (": ")
+  - Avainten arvot voi olla eri muodoissa
+  - Kaikki avaimet ovat case-sensitive, eli kirjainkoolla on merkitystä
+  - Ei tabulaattorin käyttöä, vain välilyöntejä
+  - Kommentit alkavat risuaidalla (#)
+- YAML koostuu kolmesta peruselementistä:
+  - Scalaarit (scalars)
+  - Listat (lists)
+  - Sanakirjat (dictionary)
+- YAML perustuu lohkorakenteisiin, jotka määräytyvät sisennysten perusteella
+- Ominaisuudet ja listat täytyy sisentää vähintään yhdellä välilyönnillä, yleensä käytetään kahta
+- Kokoelma, mikä on lista tai sanakirjan alkio alkaa väliviivalla ja välilyönnillä ("- ")
 
 ## a) Hei infrakoodi! Kokeile paikallisesti (esim 'sudo salt-call --local') infraa koodina. Kirjota sls-tiedosto, joka tekee esimerkkitiedoston /tmp/ -kansioon.
 
