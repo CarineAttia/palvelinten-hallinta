@@ -24,12 +24,12 @@ Viikon 3 tehtävät:
   - Ei tabulaattorin käyttöä, vain välilyöntejä
   - Kommentit alkavat risuaidalla (#)
 - YAML koostuu kolmesta peruselementistä:
-  - Scalaarit (scalars)
-  - Listat (lists)
-  - Sanakirjat (dictionary)
+  - Scalaarit (Scalars)
+  - Listat (Lists)
+  - Sanakirjat (Dictionary)
 - YAML perustuu lohkorakenteisiin, jotka määräytyvät sisennysten perusteella
 - Ominaisuudet ja listat täytyy sisentää vähintään yhdellä välilyönnillä, yleensä käytetään kahta
-- Kokoelma, mikä on lista tai sanakirjan alkio alkaa väliviivalla ja välilyönnillä ("- ")
+- Kokoelma, mikä on lista tai sanakirjojen alkio alkaa väliviivalla ja välilyönnillä ("- ")
 
 ## a) Hei infrakoodi! Kokeile paikallisesti (esim 'sudo salt-call --local') infraa koodina. Kirjota sls-tiedosto, joka tekee esimerkkitiedoston /tmp/ -kansioon.
 
