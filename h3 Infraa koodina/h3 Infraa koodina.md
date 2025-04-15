@@ -89,7 +89,7 @@ Viimeiseksi tehtävänäni oli luoda uusi SLS-tiedosto, joka käyttää vähint�
 
 Loin uuden SLS-tiedoston /srv/salt/ -hakemistoon:
 
-    $ sudoedit /srv/salt/uusi_testi.sls   #Muokkasin uusi_testi -SLS-tiedoston sisältöä
+    $ sudoedit /srv/salt/uusi_testi.sls   #Muokkasin uusi_testi-SLS-tiedoston sisältöä
 
 Sen sisälle kirjotin:
 
@@ -109,7 +109,7 @@ Sen sisälle kirjotin:
 
 Tässä SLS-tiedostossa määrittelin, että Saltin tulee asentaa micro-editori, luoda tyhjä tiedosto /tmp/hei.txt sekä lisätä käyttäjä salt_user, mikäli näitä ei jo ole olemassa. 
 
-Ajoin komennon: 
+Ajoin masterilla komennon: 
 
     $ sudo salt '*' state.apply uusi_testi   # Käskin masteria ajamaan uusi_testi -tilan kaikilla minioneilla, eli toteuttamaan siihen määritellyt tehtävät
 
@@ -117,9 +117,9 @@ Ajoin komennon:
 
 <img src="uusi_testi2.png" width="60%">
 
-Vastaukseksi sain, että micro-editori on jo asennettu. Tiedostoa heiheihei.txt ei ollut, joten se luotiin, samoin uusi käyttäjä uusi_user.
+Vastaukseksi sain, että micro-editori on jo asennettu. Tiedostoa heiheihei.txt ei ollut, joten se luotiin. Samoin uusi käyttäjä uusi_user lisättiin.
 
-Ajoin komennon `sudo salt '*' state.apply uusi_testi` vielä muutaman kerran uudelleen ja vastaukseksi sain, että ne on jo olemassa, eli mitään ei muutettu. Komento oli siis idempotentti.
+Ajoin komennon `sudo salt '*' state.apply uusi_testi` vielä muutaman kerran uudelleen. Vastaukseksi sain, että ne on jo olemassa, eli mitään ei muutettu. Tämä osoitti, että tila on idempotentti, eli se ei tee muutoksia.
 
 <img src="idempotentti.png" width="60%">
 
@@ -145,9 +145,11 @@ Käyttäjän uusi_user olemassaolon tarkistin komennolla:
 
     $ id uusi_user
 
-Vastaukseksi sain, että käyttäjä löytyi, eli se oli lisätty onnistuneesti.
+Komento palautti käyttäjätiedot, eli uusi_user oli luotu onnistuneesti.
 
 <img src="uusi_user.png" width="60%">
+
+SLS-tiedosto uusi_testi.sls toimi siis odotetusti. Se suoritti kolme eri tilaa ja osoittautui idempotentiksi. Tarkistukset minionin puolella osoittivat, että kaikki toimet oli toteutettu oikein.
 
 
 Lähteet:
@@ -160,4 +162,4 @@ VMware Inc. Salt overview. Luettavissa: https://docs.saltproject.io/salt/user-gu
 
 VMWare Inc. 2025. How Do I Use Salt States? Luettavissa: https://docs.saltproject.io/en/3006/topics/tutorials/starting_states.html Luettu: 15.4.2025
 
-
+VMWare Inc. 2025. Luettavissa: https://docs.saltproject.io/en/3006/topics/tutorials/states_pt1.html Luettu: 15.4.2025
