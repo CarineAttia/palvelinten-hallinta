@@ -33,6 +33,26 @@ Viikon 3 tehtävät:
 
 ## a) Hei infrakoodi! Kokeile paikallisesti (esim 'sudo salt-call --local') infraa koodina. Kirjota sls-tiedosto, joka tekee esimerkkitiedoston /tmp/ -kansioon.
 
+Tarkoituksenani oli kokeilla infrasktruktuurin hallintaa Saltin avulla. Tehtävänä oli luoda SLS-tiedosto, joka luo esimerkkitiedoston /tmp/ -hakemistoon ja ajaa sen paikallisesti.
+
+Avattuani koneeni loin uuden hakemiston ja SLS-tiedoston sen sisälle:
+
+    sudo mkdir -p /srv/salt/hello/   #Loin uuden hakemiston
+    cd /srv/salt/hello/   #Siirryin uuteen hakemistoon
+    sudoedit init.sls   #
+
+Tiedoston sisälle kirjoitin:
+
+    /tmp/hellocarine:
+      file.managed
+
+Tallensin tiedoston ja ajoin komennon:
+
+    sudo salt-call --local state.apply hello    #
+
+Vastaukseksi sain
+    
+
 ## b) Aja esimerkki sls-tiedostosi verkon yli orjalla.
 
 ## c) Tee sls-tiedosto, joka käyttää vähintään kahta eri tilafunktiota näistä: package, file, service, user. Tarkista eri ohjelmalla, että lopputulos on oikea. Osoita useammalla ajolla, että sls-tiedostosi on idempotentti.
