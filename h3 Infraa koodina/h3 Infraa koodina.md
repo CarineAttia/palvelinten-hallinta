@@ -52,7 +52,7 @@ T채ll채 m채채rittelin, ett채 tiedosto /tmp/hellocarine tulee olla olemassa. Mik�
 
 Tallensin tiedoston ja ajoin komennon paikallisesti:
 
-    $ sudo salt-call --local state.apply hello    #
+    $ sudo salt-call --local state.apply hello    #Ajoin hello-tilan paikallisesti masterilla
 
 <img src="hello.png" width="60%">
 
