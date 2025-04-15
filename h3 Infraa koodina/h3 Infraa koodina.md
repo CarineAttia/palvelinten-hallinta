@@ -50,9 +50,28 @@ Tallensin tiedoston ja ajoin komennon:
 
     sudo salt-call --local state.apply hello    #
 
-Vastaukseksi sain
+Vastaukseksi sain tilan onnistuneen.
+
+Result: True = tila suoritettiin onnistuneesti
+
+Changes: new = uusi tiedosto /tmp/hellocarine luotiin
     
 
 ## b) Aja esimerkki sls-tiedostosi verkon yli orjalla.
 
+
+
 ## c) Tee sls-tiedosto, joka käyttää vähintään kahta eri tilafunktiota näistä: package, file, service, user. Tarkista eri ohjelmalla, että lopputulos on oikea. Osoita useammalla ajolla, että sls-tiedostosi on idempotentti.
+
+
+
+
+Lähteet:
+
+Karvinen, T. 2025. Läksyt: h3 Infraa koodina. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/#laksyt Luettu: 15.4.2025
+
+Karvinen, T. 2024. Luettavissa: https://terokarvinen.com/2024/hello-salt-infra-as-code/ Luettu: 15.4.2025
+
+VMware, Inc. Salt overview. Luettavissa: https://docs.saltproject.io/salt/user-guide/en/latest/topics/overview.html#rules-of-yaml Luettu: 15.4.2025
+
+
