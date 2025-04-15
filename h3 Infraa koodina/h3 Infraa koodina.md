@@ -89,7 +89,7 @@ Viimeiseksi tehtävänäni oli luoda uusi SLS-tiedosto, joka käyttää vähint�
 
 Loin uuden SLS-tiedoston /srv/salt/ -hakemistoon:
 
-    $ sudoedit /srv/salt/uusi_testi.sls   #
+    $ sudoedit /srv/salt/uusi_testi.sls   #Muokkasin uusi_testi -SLS-tiedoston sisältöä
 
 Sen sisälle kirjotin:
 
