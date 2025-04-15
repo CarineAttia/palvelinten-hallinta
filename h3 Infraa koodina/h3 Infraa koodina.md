@@ -39,16 +39,20 @@ Avattuani koneeni loin uuden hakemiston ja SLS-tiedoston sen sisälle:
 
     sudo mkdir -p /srv/salt/hello/   #Loin uuden hakemiston
     cd /srv/salt/hello/   #Siirryin uuteen hakemistoon
-    sudoedit init.sls   #
+    sudoedit init.sls   #Muokkasin SLS-tiedoston sisältöä
 
 Tiedoston sisälle kirjoitin:
 
     /tmp/hellocarine:
       file.managed
 
+<img src="hello_carine.png" width="60%">
+
 Tallensin tiedoston ja ajoin komennon:
 
     sudo salt-call --local state.apply hello    #
+
+<img src="hello.png" width="60%">
 
 Vastaukseksi sain tilan onnistuneen.
 
