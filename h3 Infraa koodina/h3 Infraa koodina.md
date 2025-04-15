@@ -46,9 +46,11 @@ Tiedoston sisälle kirjoitin:
     /tmp/hellocarine:
       file.managed
 
+Tällä määrittelin, että tiedosto /tmp/hellocarine tulee olla olemassa. Mikäli tiedostoa ei vielä ole olemassa, Salt luo tyhjän tiedoston.
+
 <img src="hello_carine.png" width="60%">
 
-Tallensin tiedoston ja ajoin komennon:
+Tallensin tiedoston ja ajoin komennon paikallisesti:
 
     sudo salt-call --local state.apply hello    #
 
