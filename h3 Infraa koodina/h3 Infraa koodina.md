@@ -119,13 +119,11 @@ Ajoin komennon:
 
 Vastaukseksi sain, että micro-editori on jo asennettu. Tiedostoa heiheihei.txt ei ollut, joten se luotiin, samoin uusi käyttäjä uusi_user.
 
-Lopputulos piti vielä tarkistaa erillisillä komennoilla ja osoittaa, että SLS-tiedosto on idempotentti. 
-
-Ajoin komennon `sudo salt '*' state.apply uusi_testi` vielä muutaman kerran uudelleen ja vastaukseksi sain, että ne on jo olemassa, eli mitään ei muutettu.
+Ajoin komennon `sudo salt '*' state.apply uusi_testi` vielä muutaman kerran uudelleen ja vastaukseksi sain, että ne on jo olemassa, eli mitään ei muutettu. Komento oli siis idempotentti.
 
 <img src="idempotentti.png" width="60%">
 
-Siirryin vielä minionin puolelle tarkistamaan, että tila oli oikeasti toteutunut oikein.
+Lopputulos piti vielä tarkistaa erillisillä komennoilla. Siirryin vielä minionin puolelle tarkistamaan, että tila oli oikeasti toteutunut oikein.
 
 Varmistin Micro-editorin asennuksen varmistin komennolla:
 
