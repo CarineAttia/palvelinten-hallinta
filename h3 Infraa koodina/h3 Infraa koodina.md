@@ -37,9 +37,9 @@ Tarkoituksenani oli kokeilla infrasktruktuurin hallintaa Saltin avulla. Tehtäv�
 
 Avattuani koneeni loin uuden hakemiston ja SLS-tiedoston sen sisälle:
 
-    sudo mkdir -p /srv/salt/hello/   #Loin uuden hakemiston
-    cd /srv/salt/hello/   #Siirryin uuteen hakemistoon
-    sudoedit init.sls   #Muokkasin SLS-tiedoston sisältöä
+    $ sudo mkdir -p /srv/salt/hello/   #Loin uuden hakemiston
+    $ cd /srv/salt/hello/   #Siirryin uuteen hakemistoon
+    $ sudoedit init.sls   #Muokkasin SLS-tiedoston sisältöä
 
 Tiedoston sisälle kirjoitin:
 
@@ -52,7 +52,7 @@ Tällä määrittelin, että tiedosto /tmp/hellocarine tulee olla olemassa. Mik�
 
 Tallensin tiedoston ja ajoin komennon paikallisesti:
 
-    sudo salt-call --local state.apply hello    #
+    $ sudo salt-call --local state.apply hello    #
 
 <img src="hello.png" width="60%">
 
@@ -65,7 +65,9 @@ Changes: new = uusi tiedosto /tmp/hellocarine luotiin
 
 ## b) Aja esimerkki sls-tiedostosi verkon yli orjalla.
 
+Seuraavaksi tarkoitus oli 
 
+    $ sudo salt '*' state.apply hello   #Käskin masteria ajamaan hello-tilan kaikilla minioneilla, eli toteuttamaan siihen määritellyn tehtävän
 
 ## c) Tee sls-tiedosto, joka käyttää vähintään kahta eri tilafunktiota näistä: package, file, service, user. Tarkista eri ohjelmalla, että lopputulos on oikea. Osoita useammalla ajolla, että sls-tiedostosi on idempotentti.
 
