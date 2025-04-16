@@ -6,6 +6,8 @@ Viikon 4 tehtävät:
 
 ## Tero Karvinen: Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port
 - Suuria määriä daemoneja on mahdollista hallita konfiguraationhallintajärjestelmän avulla
+- Package-file-service on yleinen tapa: asennetaan ohjelmisto, korvataan konfiguraatiotiedosto ja käynnistetään daemon uudelleen, jotta uudet asetukset saa käyttöön
+- 
 - 
 
 ## a) Apache easy mode. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy. 
