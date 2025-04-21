@@ -21,4 +21,6 @@ Karvinen, T. 2025. Läksyt: h4 Pkg-file-service. Luettavissa: https://terokarvin
 
 Karvinen, T. 2025. Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port. Luettavissa: https://terokarvinen.com/2018/04/03/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/?fromSearch=karvinen%20salt%20ssh Luettu: 16.4.2025
 
+VMware Inc. 2025. States tutorial, part 1 - Basic Usage. Luettavissa: https://docs.saltproject.io/en/3006/topics/tutorials/states_pt1.html?utm_source=chatgpt.com Luettu: 21.4.2025
+
 
