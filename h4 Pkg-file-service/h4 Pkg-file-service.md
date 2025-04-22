@@ -122,7 +122,7 @@ Lisäsin sinne tiedon tarvittavista porteista:
 
 Tämän jälkeen automatisoin:
 
-    Sudo salt '*' state.apply ssh   #Ajoin Salt-tilan kaikilla minioneilla
+    $ sudo salt '*' state.apply ssh   #Ajoin Salt-tilan kaikilla minioneilla
 
 <img src="results4.png" width="60%">
 
@@ -132,12 +132,18 @@ Sain vastauksena, että SSH-palvelin oli jo asennettu, eikä tehnyt sille muutok
 
 Tämän jälkeen menin vielä minionille testaamaan portit. Annoin komennot:
 
-    nc -vz localhost 22   #
-    nc -vz localhost 1234   #
+    $ nc -vz localhost 22   #
+    $ nc -vz localhost 1234   #
 
 <img src="ports3.png" width="60%">
 
+Sain molemmista onnistuneet vastaukset. Annoin vielä komennon:
+
+    $ ssh -p 1234 vagrant@localhost
+
 <img src="ports4.png" width="60%">
+
+Vastauksena sain kirjautumispyynnön, eli tehtävä oli onnistunut.
 
 
 
