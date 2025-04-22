@@ -69,9 +69,11 @@ Vastauksena sain onnistumisia jokaisesta vaiheesta:
 
 <img src="result3.png" width="60%">
 
-Testasin vielä minionilla, että palvelu varmasti toimii ja on käynnissä. Siirryin taas minionille ja testasin selaimessa. Luomani testisivu oli näkyvissä, eli tehtävä onnistui. 
+Testasin vielä minionilla, että palvelu varmasti toimii ja on käynnissä. Siirryin taas minionille ja testasin selaimessa.
 
 <img src="hello2.png" width="60%">
+
+Onnistuin siis asentamaan ja konfiguroimaan Apache-palvelimen käsin, sekä automatisoimaan saman prosessin Saltilla pkg-file-service -rakenteen avulla. 
 
 ## b) SSHouto. Lisää uusi portti, jossa SSHd kuuntelee.
 
