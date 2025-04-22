@@ -15,9 +15,9 @@ Viikon 4 tehtävät:
 
 ## a) Apache easy mode. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy. Ensin käsin, vasta sitten automaattisesti. Kirjoita tila sls-tiedostoon. pkg-file-service. Tässä ei tarvita service:ssä watch, koska index.html ei ole asetustiedosto.
 
-Tehtävän tarkoitus oli asentaa ja konfiguroida Apache ensin käsin ja sitten automatisoida se Saltilla käyttäen pkg-file-service -rakennetta. Tarkoituksena oli myös korvata oletussivu.
+Tehtävän tarkoitus oli asentaa ja konfiguroida Apache ensin käsin ja sitten automatisoida se Saltilla käyttäen pkg-file-service -rakennetta. Tarkoituksena oli myös korvata oletussivu omalla.
 
-Aloitin tehtävän tekemällä käsin minionilla ja annoin komennot:
+Aloitin tehtävän tekemällä kaiken käsin minionilla ja annoin komennot:
 
     sudo apt-get update    #Päivitin pakettien listan
     sudo apt-get install apache2 -y   #Asensin Apachen
@@ -40,7 +40,7 @@ Testasin, että uusi konfiguroimani sivu varmasti toimii. Katsoin taas selaimelt
 
 Onnistuin siis tekemään sen käsin ja seuraavaksi se piti automatisoida. Poistin minionilta käsin tehdyt muutokset:
 
-    sudo rm /var/www/html/index.html    #Poistin luomani 
+    sudo rm /var/www/html/index.html    #Poistin luomani oletussivun
     sudo apt remove apache2 -y   #Poistin Apachen asennuksen
 
 Testasin taas uudelleen selaimessa minionin IP-osoitteen ja vastaukseksi sain, että muokkaamani sivu ei ollut enää saatavilla.
@@ -49,25 +49,29 @@ Testasin taas uudelleen selaimessa minionin IP-osoitteen ja vastaukseksi sain, e
 
 Siirryin tämän jälkeen masterille automatisoinnin kimppuun. Kuten minionilla, loin oman oletussivun:
 
-    echo “Hello”! :-) | sudo tee /var/www/html/index.html   #
+    echo “Hello”! :-) | sudo tee /var/www/html/index.html   #Loin oletussivun Salt-masterille
 
 <img src="indext001.png" width="60%">
 
-Tämän jälkeen loin SLS-tiedoston:
+Tämän jälkeen loin SLS-tiedoston, joka asensi nApachen, hallitsi index.html -tiedostoa ja varmisti, että palvelu on käynnissä:
 
 <img src="sls-file.png" width="60%">
 
 Tallensin tiedoston ja ajoin komennon:
 
-    Sudo salt '*' state.apply apache   #
+    Sudo salt '*' state.apply apache   #Ajoin Salt-tilan kaikilla minioneilla
 
-Vastauksena sain
+Vastauksena sain onnistumisia jokaisesta vaiheesta: 
 
 <img src="result1.png" width="60%">
 
 <img src="result2.png" width="60%">
 
 <img src="result3.png" width="60%">
+
+Testasin vielä minionilla, että palvelu varmasti toimii ja on käynnissä. Siirryin taas minionille ja testasin selaimessa. Luomani testisivu oli näkyvissä, eli tehtävä onnistui. 
+
+<img src="hello2.png" width="60%">
 
 ## b) SSHouto. Lisää uusi portti, jossa SSHd kuuntelee.
 
