@@ -13,7 +13,14 @@ Viikon 4 tehtävät:
 - Yhdistä SSH:lla uuteen porttiin: ssh -p [portti] [käyttäjä]@localhost. Jos saat kirjautumispyynnön, olet onnistunut
 
 
-## a) Apache easy mode. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy. 
+## a) Apache easy mode. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy. Ensin käsin, vasta sitten automaattisesti. Kirjoita tila sls-tiedostoon. pkg-file-service. Tässä ei tarvita service:ssä watch, koska index.html ei ole asetustiedosto.
+
+Tehtävän tarkoitus oli asentaa ja konfiguroida Apache ensin käsin ja sitten automatisoida se Saltilla käyttäen pkg-file-service -rakennetta. Tarkoituksena oli myös korvata testisivu.
+
+Aloitin tehtävän minionilla ja annoin komennot:
+
+    sudo apt-get update    #Hain 
+    sudo apt-get install apache2 -y   #Apachen asennus
 
 
 ## b) SSHouto. Lisää uusi portti, jossa SSHd kuuntelee.
