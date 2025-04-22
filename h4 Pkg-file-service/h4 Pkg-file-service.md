@@ -19,8 +19,8 @@ Tehtävän tarkoitus oli asentaa ja konfiguroida Apache ensin käsin ja sitten a
 
 Aloitin tehtävän tekemällä kaiken käsin minionilla ja annoin komennot:
 
-    sudo apt-get update    #Päivitin pakettien listan
-    sudo apt-get install apache2 -y   #Asensin Apachen
+    $ sudo apt-get update    #Päivitin pakettien listan
+    $ sudo apt-get install apache2 -y   #Asensin Apachen
 
 <img src="install_apache.png" width="60%">
 
@@ -30,7 +30,7 @@ Asennuksen jälkeen testasin selaimella, että palvelu toimii avaamalla osoittee
 
 Tämän jälkeen korvasin Apachen oletussivun omalla versiollani. Annoin komennon:
 
-    echo “Hello”! :-) | sudo tee /var/www/html/index.html   #Muutin oletussivun
+    $ echo “Hello”! :-) | sudo tee /var/www/html/index.html   #Muutin oletussivun
 
 <img src="indext002.png" width="60%">
 
@@ -40,8 +40,8 @@ Testasin, että uusi konfiguroimani sivu varmasti toimii. Katsoin taas selaimelt
 
 Onnistuin siis tekemään sen käsin ja seuraavaksi se piti automatisoida. Poistin minionilta käsin tehdyt muutokset:
 
-    sudo rm /var/www/html/index.html    #Poistin luomani oletussivun
-    sudo apt remove apache2 -y   #Poistin Apachen asennuksen
+    $ sudo rm /var/www/html/index.html    #Poistin luomani oletussivun
+    $ sudo apt remove apache2 -y   #Poistin Apachen asennuksen
 
 Testasin taas uudelleen selaimessa minionin IP-osoitteen ja vastaukseksi sain, että muokkaamani sivu ei ollut enää saatavilla.
 
@@ -49,7 +49,7 @@ Testasin taas uudelleen selaimessa minionin IP-osoitteen ja vastaukseksi sain, e
 
 Siirryin tämän jälkeen masterille automatisoinnin kimppuun. Kuten minionilla, loin oman oletussivun:
 
-    echo “Hello”! :-) | sudo tee /var/www/html/index.html   #Loin oletussivun Salt-masterille
+    $ echo “Hello”! :-) | sudo tee /var/www/html/index.html   #Loin oletussivun Salt-masterille
 
 <img src="indext001.png" width="60%">
 
@@ -59,7 +59,7 @@ Tämän jälkeen loin SLS-tiedoston, joka asensi nApachen, hallitsi index.html -
 
 Tallensin tiedoston ja ajoin komennon:
 
-    Sudo salt '*' state.apply apache   #Ajoin Salt-tilan kaikilla minioneilla
+    $ sudo salt '*' state.apply apache   #Ajoin Salt-tilan kaikilla minioneilla
 
 Vastauksena sain onnistumisia jokaisesta vaiheesta: 
 
@@ -75,7 +75,64 @@ Testasin vielä minionilla, että palvelu varmasti toimii ja on käynnissä. Sii
 
 Onnistuin siis asentamaan ja konfiguroimaan Apache-palvelimen käsin, sekä automatisoimaan saman prosessin Saltilla pkg-file-service -rakenteen avulla. 
 
-## b) SSHouto. Lisää uusi portti, jossa SSHd kuuntelee.
+## b) SSHouto. Lisää uusi portti, jossa SSHd kuuntelee. Jos käytät Vagrantia, muista jättää portti 22/tcp auki - se on oma yhteytesi koneeseen. SSHd:n asetustiedostoon voi tehdä yksinkertaisesti kaksi "Port" riviä, molemmat portit avataan. Löydät oikean asetuksen katsomalla SSH:n asetustiedostoa. Nyt tarvitaan service-watch, jotta demoni käynnistetään uudelleen, jos asetustiedosto muuttuu masterilla
+
+Tehtävän tarkoitus oli lisätä SSH-palvelimelle toinen portti, jolla SSH kuuntelee, ensin käsin ja sitten automatisoida Saltilla. Lisäksi piti käyttää watch-määritystä, jotta SSH-palvelu käynnistyy automaattisesti uudelleen, jos asetustiedosto muuttuu.
+
+Aloitin käsin testaamisen minionilta. Muokkasin SSH:n asetustiedostoa /etc/ssh/sshd_config ja lisäsin sinne tiedon uudesta portista:
+
+    Port 22
+    Port 1234
+
+<img src="ports.png" width="60%">
+
+Tallensin tiedoston. Käynnistin SSH:n uudelleen ja tarkistin sen tilan:
+
+    $ sudo systemctl restart ssh   #Käynnistin SSH:n
+    $ sudo systemctl status ssh   #Tarkistin SSH:n tilan
+
+<img src="ssh.png" width="60%">
+
+SSH oli käynnissä. Testasin portit 22 ja 1234. Molemmat portit olivat auki ja kuuntelevat. 
+
+Seuraavaksi poistin käsin tehdyt muutokset minionilta. Muokkasin asetustiedostoa:
+
+    $ sudo nano /etc/ssh/sshd_config   #Muokkasin asetustiedostoa minionilla
+
+Poistin lisäämäni rivin "Port 1234". Lisäksi muokkasin rivin "Port 22" takaisin kommentiksi, eli lisäsin risuaidan sen eteen. Näin tiedoston ja SSH:n asetukset palautuivat takaisin alkuperäiseen tilaan ennen kuin automatisoin.
+
+Tämän jälkeen siirryin masterille automatisoinnin pariin. Loin SLS-tiedoston 
+
+    $ sudo nano /srv/salt/ssh.sls   #Loin SLS-tiedoston
+
+<img src="sls-state.png" width="60%">
+
+Sen sisälle määrittelin..
+
+Tallennuksen jälkeen loin asetustiedoston:
+
+    $ sudo nano /srv/salt/sshd_config  #Muokkasin asetustiedostoa
+
+Lisäsin sinne tiedon tarvittavista porteista:
+
+    Port 22
+    Port 1234
+
+<img src="ports2.png" width="60%">
+
+Tämän jälkeen automatisoin:
+
+    Sudo salt '*' state.apply ssh   #
+
+<img src="results4.png" width="60%">
+
+<img src="results5.png" width="60%">
+
+<img src="ports3.png" width="60%">
+
+<img src="ports4.png" width="60%">
+
+
 
 Lähteet:
 
