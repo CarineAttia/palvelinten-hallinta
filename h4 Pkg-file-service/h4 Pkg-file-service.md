@@ -5,10 +5,13 @@ Viikon 4 tehtävät:
 ## x) Lue ja tiivistä
 
 ## Tero Karvinen: Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port
-- Suuria määriä daemoneja on mahdollista hallita konfiguraationhallintajärjestelmän avulla
-- Package-file-service on yleinen tapa: asennetaan ohjelmisto, korvataan konfiguraatiotiedosto ja käynnistetään daemon uudelleen, jotta uudet asetukset saa käyttöön
-- 
-- 
+- Suuria määriä daemoneja on mahdollista hallita Saltilla konfiguraationhallintajärjestelmän avulla
+- Package-file-service on yleinen tapa: pkg.installed asentaa ohjelman, file.managed hallitsee asetustiedostoa ja service.running käynnistää palvelun uudelleen, jotta uudet asetukset saa käyttöön. Jos asetustiedosto muuttuu, palvelu käynnistyy uudelleen watch-määrityksen avulla
+- Masterin asetustiedostoon määritellään esimerkiksi uusi SSH-portti, esim. Port 8888
+- Aja komento masterilla: sudo salt '*' state.apply sshd
+- Testaa muutokset minionilla. Tarkista että portti toimii: nc -vz localhost [portti]
+- Yhdistä SSH:lla uuteen porttiin: ssh -p [portti] [käyttäjä]@localhost. Jos saat kirjautumispyynnön, olet onnistunut
+
 
 ## a) Apache easy mode. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy. 
 
