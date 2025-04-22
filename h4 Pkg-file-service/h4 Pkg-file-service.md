@@ -148,8 +148,7 @@ Vastauksena sain kirjautumispyynnön, eli tehtävä oli onnistunut.
 Onnistuin siis lisäämään SSH-palvelimeen toisen portin käsin sekä Saltilla automatisoidusti. Testaus osoitti, että SSH kuunteli molemmilla porteilla ja yhteydet toimivat.
 
 
-
-Lähteet:
+## Lähteet:
 
 Karvinen, T. 2025. Läksyt: h4 Pkg-file-service. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/#laksyt Luettu: 16.4.2025
 
