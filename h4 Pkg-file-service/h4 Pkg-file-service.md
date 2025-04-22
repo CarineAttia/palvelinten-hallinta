@@ -34,7 +34,7 @@ Tämän jälkeen korvasin Apachen oletussivun omalla versiollani. Annoin komenno
 
 <img src="indext002.png" width="60%">
 
-Testasin, että uusi konfiguroimani sivu varmasti toimii. Katsoin taas selaimelta osoitteen http://192.168.88.102 ja sielä näkyi teksti, jonka olin määritellyt.
+Testasin, että uusi konfiguroimani sivu varmasti toimii. Avasin selaimen ja menin osoitteeseen http://192.168.88.102, jossa näkyi teksti, jonka olin määritellyt.
 
 <img src="hello1.png" width="60%">
 
@@ -49,11 +49,11 @@ Testasin taas uudelleen selaimessa minionin IP-osoitteen ja vastaukseksi sain, e
 
 Siirryin tämän jälkeen masterille automatisoinnin kimppuun. Kuten minionilla, loin oman oletussivun:
 
-    $ echo “Hello”! :-) | sudo tee /var/www/html/index.html   #Loin oletussivun Salt-masterille
+    $ echo “Hello! :-)" | sudo tee /srv/salt/index.html   #Loin oletussivun Salt-masterille
 
 <img src="indext001.png" width="60%">
 
-Tämän jälkeen loin SLS-tiedoston, joka asensi nApachen, hallitsi index.html -tiedostoa ja varmisti, että palvelu on käynnissä:
+Tämän jälkeen loin SLS-tiedoston, joka asensi Apachen, hallitsi index.html -tiedostoa ja varmisti, että palvelu on käynnissä:
 
 <img src="sls-file.png" width="60%">
 
@@ -61,15 +61,15 @@ Tallensin tiedoston ja ajoin komennon:
 
     $ sudo salt '*' state.apply apache   #Ajoin Salt-tilan kaikilla minioneilla
 
-Vastauksena sain onnistumisia jokaisesta vaiheesta: 
-
 <img src="result1.png" width="60%">
 
 <img src="result2.png" width="60%">
 
 <img src="result3.png" width="60%">
 
-Testasin vielä minionilla, että palvelu varmasti toimii ja on käynnissä. Siirryin taas minionille ja testasin selaimessa.
+Vastaukseksi sain, että Apache asennettiin onnistuneesti. Apachen oletussivu korvattiin uudella index.html -tiedostolla. Apache-palvelu oli jo käynnissä, eikä sitä tarvinnut käynnistää uudelleen. Kaikki kolme tehtävää suoritettiin onnistuneesti ja kahdessa niistä tehtiin muutoksi järjestelmään.
+
+Testasin vielä minionilla, että palvelu varmasti toimii ja on käynnissä. Siirryin taas minionille ja testasin selaimessa http://192.168.88.102.
 
 <img src="hello2.png" width="60%">
 
@@ -79,7 +79,7 @@ Onnistuin siis asentamaan ja konfiguroimaan Apache-palvelimen käsin, sekä auto
 
 Tehtävän tarkoitus oli lisätä SSH-palvelimelle toinen portti, jolla SSH kuuntelee, ensin käsin ja sitten automatisoida Saltilla. Lisäksi piti käyttää watch-määritystä, jotta SSH-palvelu käynnistyy automaattisesti uudelleen, jos asetustiedosto muuttuu.
 
-Aloitin käsin testaamisen minionilta. Muokkasin SSH:n asetustiedostoa /etc/ssh/sshd_config ja lisäsin sinne tiedon uudesta portista:
+Aloitin käsin testaamisen minionilta. Muokkasin SSH:n asetustiedostoa /etc/ssh/sshd_config ja lisäsin sinne tiedon uusista porteista:
 
     Port 22
     Port 1234
@@ -88,12 +88,12 @@ Aloitin käsin testaamisen minionilta. Muokkasin SSH:n asetustiedostoa /etc/ssh/
 
 Tallensin tiedoston. Käynnistin SSH:n uudelleen ja tarkistin sen tilan:
 
-    $ sudo systemctl restart ssh   #Käynnistin SSH:n
+    $ sudo systemctl restart ssh   #Käynnistin SSH:n uudelleen
     $ sudo systemctl status ssh   #Tarkistin SSH:n tilan
 
 <img src="ssh.png" width="60%">
 
-SSH oli käynnissä. Testasin portit 22 ja 1234. Molemmat portit olivat auki ja kuuntelevat. 
+SSH oli käynnissä. Testasin portit 22 ja 1234. Molemmat portit olivat auki ja kuuntelivat. 
 
 Seuraavaksi poistin käsin tehdyt muutokset minionilta. Muokkasin asetustiedostoa:
 
@@ -103,15 +103,15 @@ Poistin lisäämäni rivin "Port 1234". Lisäksi muokkasin rivin "Port 22" takai
 
 Tämän jälkeen siirryin masterille automatisoinnin pariin. Loin SLS-tiedoston 
 
-    $ sudo nano /srv/salt/ssh.sls   #Loin SLS-tiedoston
+    $ sudo nano /srv/salt/ssh.sls   #Loin SLS-tilatiedoston
 
 <img src="sls-state.png" width="60%">
 
-Sen sisälle määrittelin..
+Siinä määriteltiin, että openssh-server on asennettu, sshd_config -tiedosto kopioitiin masterilta minionille ja sshd-palvelu käynnistettiin uudelleen, jos tiedosto muuttuu.
 
 Tallennuksen jälkeen loin asetustiedoston:
 
-    $ sudo nano /srv/salt/sshd_config  #Muokkasin asetustiedostoa
+    $ sudo nano /srv/salt/sshd_config  #Muokkasin asetustiedostoa masterilla
 
 Lisäsin sinne tiedon tarvittavista porteista:
 
@@ -128,22 +128,24 @@ Tämän jälkeen automatisoin:
 
 <img src="results5.png" width="60%">
 
-Sain vastauksena, että SSH-palvelin oli jo asennettu, eikä tehnyt sille muutoksia. SSH-asetustiedosto /etc/ssh/sshd_config päivitettiin uudella sisällöllä. Tämän jälkeen SSH-palvelu käynnistettiin uudelleen, jotta muutokset saatiin voimaan. Kaikki tehtävät onnistuivat ja kaksi niistä muutti järjestelmän tilaa.
+Sain vastauksena, että SSH-palvelin oli jo asennettu, eikä tehnyt sille muutoksia. SSH-asetustiedosto /etc/ssh/sshd_config päivitettiin uudella sisällöllä. Tämän jälkeen SSH-palvelu käynnistettiin uudelleen, jotta muutokset saatiin voimaan. Kaikki tehtävät suoritettiin onnistuneesti ja kahdessa niistä tehtiin muutoksia järjestelmään.
 
 Tämän jälkeen menin vielä minionille testaamaan portit. Annoin komennot:
 
-    $ nc -vz localhost 22   #
-    $ nc -vz localhost 1234   #
+    $ nc -vz localhost 22   #Testasin, onko portti 22 auki ja kuunteleeko palvelu siinä
+    $ nc -vz localhost 1234   #Testasin, onko portti 1234 auki ja kuunteleeko palvelu siinä
 
 <img src="ports3.png" width="60%">
 
 Sain molemmista onnistuneet vastaukset. Annoin vielä komennon:
 
-    $ ssh -p 1234 vagrant@localhost
+    $ ssh -p 1234 vagrant@localhost   #Yhdistin SSH:lla localhostiin portin 1234 kautta käyttäjänä vagrant
 
 <img src="ports4.png" width="60%">
 
 Vastauksena sain kirjautumispyynnön, eli tehtävä oli onnistunut.
+
+Onnistuin siis lisäämään SSH-palvelimeen toisen portin käsin sekä Saltilla automatisoidusti. Testaus osoitti, että SSH kuunteli molemmilla porteilla ja yhteydet toimivat.
 
 
 
