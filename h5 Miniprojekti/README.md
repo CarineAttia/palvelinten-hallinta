@@ -1,3 +1,3 @@
-## Projekti: kansion siivous + raportti
+## Projekti: automatisoitu kansion siivous + raportti
 
 Projektin tavoite: 
