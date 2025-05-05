@@ -14,9 +14,26 @@ Carine Attia
 
 ## Lataus
 
-git clone 
+    git clone https://github.com/CarineAttia/palvelinten-hallinta
+
+Projekti löytyy ladatun reposition kansiosta:
+
+h5 Miniprojekti
 
 ## Käyttöönotto
+
+Lataa projekti:
+   
+    git clone https://github.com/CarineAttia/palvelinten-hallinta
+
+
+Kopioi cleanup-kansio Saltin state-hakemistoon:
+
+    sudo cp -r cleanup-projekti /srv/salt/
+    
+Aja tila kaikilla minioneilla:
+
+    salt '*' state.apply cleanup-projekti
 
 
 
