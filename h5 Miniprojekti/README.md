@@ -16,9 +16,7 @@ Carine Attia
 
     git clone https://github.com/CarineAttia/palvelinten-hallinta
 
-Projekti löytyy ladatun reposition kansiosta:
-
-h5 Miniprojekti
+Projekti löytyy ladatun reposition kansiosta: h5 Miniprojekti
 
 ## Käyttöönotto
 
