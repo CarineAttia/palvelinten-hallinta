@@ -120,7 +120,7 @@ Crontabissa näkyi merkintä, joka ajaa cleanup-projektin tilan joka päivä kel
 
 <img src="Näyttökuva 2025-05-03 134932.png" width="60%">
 
-Siirryin takaisin masterille. Tässä vaiheessa file.managed-tila alkoi tuntua turhalta, koska jo cmd.run-sisällä määrittelin raporttitiedoston luomisen. Halusin luoda selkeämmän rakenteen raporteille, joten loin yhden kansion, minkä sisälle tulee aina erikseen raportti poistetuista tiedostoista. Tällä hetkellä loin aina uuden raportin, joka ylikirjoitti vanhan, eli vanhoja raportteja ei voinut tarkastella. Vaihdoin siis file.managed-tilan file.directory-tilaan:
+Siirryin takaisin masterille. Tässä vaiheessa file.managed-tila alkoi tuntua turhalta, koska jo cmd.run-sisällä määrittelin raporttitiedoston luomisen. Halusin luoda selkeämmän rakenteen raporteille, joten loin yhden kansion "cleanup", minkä sisälle tulee aina erikseen raportti poistetuista tiedostoista ja raportin nimeksi "raportti" + päivämäärä. Aikaisemmassa määrittelyssä loin aina uuden raportin, joka ylikirjoitti vanhan, eli vanhoja raportteja ei voinut tarkastella lainkaan. Vaihdoin siis file.managed-tilan file.directory-tilaan:
 
     etsi_tiedostot:
       cmd.run:
