@@ -186,7 +186,7 @@ Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsi
 
 <img src="Näyttökuva 2025-05-03 145348.png" width="60%">
 
-Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen. Siirryin minionin puolelle tarkistamaan raporttikansion. Sielä oli raportti poistetusta tiedostosta. Tarkastin vielä shared-kansion, että raportissa mainittu tiedosto oli oikeasti poistettu. Sitä ei enää näkynyt kansiossa, joten tehtävä oli onnistunut. 
+Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen. Siirryin minionin puolelle tarkistamaan raporttikansion. Sielä oli raportti poistetusta tiedostosta, kuten pitikin. Tarkastin vielä shared-kansion, että raportissa mainittu tiedosto 'Näyttökuva 2025-04-04 125800.png' oli oikeasti poistettu. Sitä ei enää näkynyt kansiossa, joten tehtävä oli onnistunut ja ohjelma toimi kuten piti. 
 
 <img src="Näyttökuva 2025-05-03 145755.png" width="60%">
 
