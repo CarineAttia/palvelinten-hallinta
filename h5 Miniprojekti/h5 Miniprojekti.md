@@ -14,9 +14,9 @@ Kansion sisälle loin tiedoston:
 
 Tiedoston sisälle kirjoitin:
 
-etsi_vanhat_tiedostot:
-  cmd.run:
-    - name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
+    etsi_vanhat_tiedostot:
+      cmd.run:
+        - name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
 
 <img src="Näyttökuva 2025-05-02 153107.png" width="80%">
 
@@ -30,18 +30,20 @@ Vastaukseksi sain, että tilan ajaminen onnistui. Tila ajettiin ilman virheitä,
 
 Palasin takaisin tiedostoon lisäämään:
 
-etsi_vanhat_tiedostot:
-  cmd.run:
-    - name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
+    etsi_vanhat_tiedostot:
+      cmd.run:
+        - name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
 
-luo_loki:
-  file.managed:
-    - name: /home/vagrant/cleanup.log
-    - contents: ‘Poistettujen tiedostojen lukumäärä: ‘
+    luo_loki:
+      file.managed:
+        - name: /home/vagrant/cleanup.log
+        - contents: ‘Poistettujen tiedostojen lukumäärä: ‘
 
-<img src=".png" width="60%">
+Tällä kertaa määrittelin, että poistetuista tiedostoista luodaan raportti, joka tallennetaan minionin kotihakemistoon tiedostoon cleanup.log. Tiedoston sisälle tuli teksti ”Poistettujen tiedostojen lukumäärä:”, minkä perään tulee myöhemmin näkyviin lukumäärä, montako tiedostoa on poistettu. Poistettujen tiedostojen lukumäärää en vielä lisännyt init.sls-tiedostoon. 
 
-Tällä kertaa määrittelin, että poistetuista tiedostoista luodaan raportti, joka tallennetaan minionin kotihakemistoon tiedostoon cleanup.log. Tiedoston sisälle tuli teksti ”Poistettujen tiedostojen lukumäärä:”, minkä perään tulee myöhemmin näkyviin lukumäärä, montako tiedostoa on poistettu. Poistettujen tiedostojen lukumäärää en vielä lisännyt init.sls-tiedostoon. Ajoin taas tilan ja sain taas tilan ajon onnistuneen.
+Ajoin taas tilan ja sain taas tilan ajon onnistuneen. 
+
+<img src="Näyttökuva 2025-05-02 155618.png" width="60%">
 
 Palasin init.sls-tiedoston pariin:
 
@@ -58,8 +60,6 @@ luo_loki:
     - contents: ‘Poistetut tiedostot:’
 
 Määrittelin siis cmd.run-tilaan komennon, joka laskee poistettujen tiedostojen määrän ja listaa ne cleanup.log-tiedostoon
-
-<img src="Näyttökuva 2025-05-02 155618.png" width="60%">
 
 Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää vanha tiedosto. Siirryin minionin puolelle tarkistamaan cleanup.login sisällön. Tiedostossa kuitenkin näkyi vain teksti ”Poistetut tiedostot”, vaikka siellä piti olla lukumäärä, sekä tiedoston nimi. Palasin takaisin masterille muokkaamaan init.sls-tiedostoa.
 
