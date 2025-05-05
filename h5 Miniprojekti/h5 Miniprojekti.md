@@ -51,7 +51,7 @@ Palasin init.sls-tiedoston pariin:
       cmd.run:
         - name:  
             count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print | wc -l)
-            echo “Poistettujen tiedostojen lukumäärä: $count”  > /home/vagrant/cleanup.log
+            echo “Poistettujen tiedostojen lukumäärä: $count”  >> /home/vagrant/cleanup.log
             find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> /home/vagrant/cleanup.log
 
     luo_loki:
@@ -59,7 +59,9 @@ Palasin init.sls-tiedoston pariin:
         - name: /home/vagrant/cleanup.log
         - contents: ‘Poistetut tiedostot:’
 
-Määrittelin siis cmd.run-tilaan komennon, joka laskee poistettujen tiedostojen määrän ja listaa ne cleanup.log-tiedostoon
+<img src="Näyttökuva 2025-05-02 165423.png" width="60%">
+
+Seuraavaksi lisäsin tiedostoon toiminnon, joka laskee löydettyjen tiedostojen määrän ja listaa ne cleanup.log-tiedostoon. 
 
 Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää vanha tiedosto. Siirryin minionin puolelle tarkistamaan cleanup.login sisällön. Tiedostossa kuitenkin näkyi vain teksti ”Poistetut tiedostot”, vaikka siellä piti olla lukumäärä, sekä tiedoston nimi. Palasin takaisin masterille muokkaamaan init.sls-tiedostoa.
 
@@ -76,8 +78,15 @@ Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää va
         - contents: ‘Poistetut tiedostot:’
         - unless: test -f /home/vagrant/cleanup.log
 
+Lisäsin tiedostoon file.managed-tilaan tiedon siitä, että cleanup.log-tiedosto luodaan vain, jos sitä ei ole vielä olemassa (unless-ehto). Huomasin, että file.managed-tila ylikirjoittaa cmd.runin tuottaman sisällön, jolloin tiedostossa näkyi vain otsikko, joten muokkasin myös sen. Tallensin ja ajoin tilan. Siirryin taas minionille katsomaan cleanup.logia. Nyt toimi! Nyt siellä näkyi tieto siitä, mitä oli poistettu ja montako kappaletta (edelleenkään ei siis poistettu oikeasti mitään). 
 
-Lisäsin tiedostoon file.managed-tilaan tiedon siitä, että cleanup.log-tiedosto luodaan vain, jos sitä ei ole vielä olemassa (unless-ehto). Tallensin, ajoin tilan ja siirryin taas minionille katsomaan cleanup.logia. Nyt toimi! Nyt siellä näkyi tieto siitä, mitä oli poistettu ja montako kappaletta (edelleenkään ei siis poistettu oikeasti mitään). 
+<img src="Näyttökuva 2025-05-02 165807.png" width="60%">
+
+<img src="Näyttökuva 2025-05-02 165829.png" width="60%">
+
+Siirryin taas minionille katsomaan cleanup.logia. Nyt toimi! Nyt siellä näkyi tieto siitä, mitä oli poistettu ja montako kappaletta (edelleenkään ei siis poistettu oikeasti mitään). 
+
+<img src="Näyttökuva 2025-05-02 171549.png" width="60%">
 
 Halusin myös automatisoida kansion siivouksen joka päivälle kello 3.00. Lisäsin tiedostoon cron.present-tilan:
 
@@ -100,8 +109,18 @@ Halusin myös automatisoida kansion siivouksen joka päivälle kello 3.00. Lisä
         - user: root
         - hour: 3
         - minute: 0
+        
+<img src="Näyttökuva 2025-05-03 133352.png" width="60%">
 
-Tässä vaiheessa file.managed-tila alkoi tuntua turhalta, koska jo cmd.run-sisällä määrittelin raporttitiedoston luomisen. Halusin luoda selkeämmän rakenteen raporteille, joten loin yhden kansion, minkä sisälle tulee aina erikseen raportti poistetuista tiedostoista. Tällä hetkellä loin aina uuden raportin, joka ylikirjoitti vanhan, eli vanhoja raportteja ei voinut tarkastella. Vaihdoin siis file.managed-tilan file.directory-tilaan:
+Siirryin minionille tarkistamaan crontabin sisällön ja varmistin, että ajastus oli lisätty onnistuneesti. Annoin komennon:
+
+    $ sudo crontab -l    #Näyttää ajastetut tehtävät crontabista
+
+Crontabissa näkyi merkintä, joka ajaa cleanup-projektin tilan joka päivä kello 3.00.
+
+<img src="Näyttökuva 2025-05-03 134932.png" width="60%">
+
+Siirryin takaisin masterille. Tässä vaiheessa file.managed-tila alkoi tuntua turhalta, koska jo cmd.run-sisällä määrittelin raporttitiedoston luomisen. Halusin luoda selkeämmän rakenteen raporteille, joten loin yhden kansion, minkä sisälle tulee aina erikseen raportti poistetuista tiedostoista. Tällä hetkellä loin aina uuden raportin, joka ylikirjoitti vanhan, eli vanhoja raportteja ei voinut tarkastella. Vaihdoin siis file.managed-tilan file.directory-tilaan:
 
     etsi_tiedostot:
       cmd.run:
@@ -129,10 +148,47 @@ Tässä vaiheessa file.managed-tila alkoi tuntua turhalta, koska jo cmd.run-sis�
 
 Lisäsin myös cronille service.running-tilan, joka varmistaa, että cron on käynnissä. 
 
-Ajoin tilan vielä kerran varmistuakseni, että kaikki toimi. Tarkastin taas minionin puolelta, että raportti oli luotu. Se oli onnistunut.
+Ajoin tilan vielä kerran varmistuakseni, että kaikki toimi.
 
-Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsin delete-ominaisuuden, joka oikeasti poistaa löydetyt tiedostot. Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen. Siirryin minionin puolelle tarkistamaan raporttikansion. Sielä oli raportti poistetusta tiedostosta. Tarkastin vielä shared-kansion, että raportissa mainittu tiedosto oli oikeasti poistettu. Sitä ei enää näkynyt kansiossa, joten tehtävä oli onnistunut. 
+<img src="Näyttökuva 2025-05-03 144956.png" width="60%">
 
+<img src="Näyttökuva 2025-05-03 145011.png" width="60%">
+
+Tarkastin taas minionin puolelta, että raportti oli varmasti luotu. Se oli onnistunut.
+
+<img src="Näyttökuva 2025-05-03 145103.png" width="60%">
+
+Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsin delete-ominaisuuden, joka oikeasti poistaa löydetyt tiedostot:
+
+    etsi_tiedostot:
+      cmd.run:
+        - name:  
+            count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 | wc -l)
+            raporttipolku="/home/vagrant/cleanup/raportti-$(date +%Y-%m-%d).txt"
+            echo “Poistettujen tiedostojen lukumäärä: $count”  > $raporttipolku
+            find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print -delete >> $raporttipolku
+
+    raporttikansio:
+      file.directory:
+        - name: /home/vagrant/cleanup
+        - user: root
+
+    cron_service:
+      service.running:
+        - name: cron
+
+    ajastus:
+      cron.present:
+        - name: ‘salt “*” state.apply cleanup-projekti’
+        - user: root
+        - hour: 3
+        - minute: 0
+
+<img src="Näyttökuva 2025-05-03 145348.png" width="60%">
+
+Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen. Siirryin minionin puolelle tarkistamaan raporttikansion. Sielä oli raportti poistetusta tiedostosta. Tarkastin vielä shared-kansion, että raportissa mainittu tiedosto oli oikeasti poistettu. Sitä ei enää näkynyt kansiossa, joten tehtävä oli onnistunut. 
+
+<img src="Näyttökuva 2025-05-03 145755.png" width="60%">
 
 
 ## Lähteet:
