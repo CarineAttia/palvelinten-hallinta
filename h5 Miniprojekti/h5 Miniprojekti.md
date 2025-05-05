@@ -47,85 +47,85 @@ Ajoin taas tilan ja sain taas tilan ajon onnistuneen.
 
 Palasin init.sls-tiedoston pariin:
 
-etsi_tiedostot:
-  cmd.run:
-    - name:  
-        count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print | wc -l)
-        echo “Poistettujen tiedostojen lukumäärä: $count”  > /home/vagrant/cleanup.log
-        find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> /home/vagrant/cleanup.log
+    etsi_tiedostot:
+      cmd.run:
+        - name:  
+            count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print | wc -l)
+            echo “Poistettujen tiedostojen lukumäärä: $count”  > /home/vagrant/cleanup.log
+            find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> /home/vagrant/cleanup.log
 
-luo_loki:
-  file.managed:
-    - name: /home/vagrant/cleanup.log
-    - contents: ‘Poistetut tiedostot:’
+    luo_loki:
+      file.managed:
+        - name: /home/vagrant/cleanup.log
+        - contents: ‘Poistetut tiedostot:’
 
 Määrittelin siis cmd.run-tilaan komennon, joka laskee poistettujen tiedostojen määrän ja listaa ne cleanup.log-tiedostoon
 
 Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää vanha tiedosto. Siirryin minionin puolelle tarkistamaan cleanup.login sisällön. Tiedostossa kuitenkin näkyi vain teksti ”Poistetut tiedostot”, vaikka siellä piti olla lukumäärä, sekä tiedoston nimi. Palasin takaisin masterille muokkaamaan init.sls-tiedostoa.
 
-etsi_tiedostot:
-  cmd.run:
-    - name:  
-        count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 | wc -l)
-        echo “Poistettujen tiedostojen lukumäärä: $count”  > /home/vagrant/cleanup.log
-        find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> /home/vagrant/cleanup.log
+    etsi_tiedostot:
+      cmd.run:
+        - name:  
+            count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 | wc -l)
+            echo “Poistettujen tiedostojen lukumäärä: $count”  > /home/vagrant/cleanup.log
+            find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> /home/vagrant/cleanup.log
 
-luo_loki:
-  file.managed:
-    - name: /home/vagrant/cleanup.log
-    - contents: ‘Poistetut tiedostot:’
-    - unless: test -f /home/vagrant/cleanup.log
+    luo_loki:
+      file.managed:
+        - name: /home/vagrant/cleanup.log
+        - contents: ‘Poistetut tiedostot:’
+        - unless: test -f /home/vagrant/cleanup.log
 
 
 Lisäsin tiedostoon file.managed-tilaan tiedon siitä, että cleanup.log-tiedosto luodaan vain, jos sitä ei ole vielä olemassa (unless-ehto). Tallensin, ajoin tilan ja siirryin taas minionille katsomaan cleanup.logia. Nyt toimi! Nyt siellä näkyi tieto siitä, mitä oli poistettu ja montako kappaletta (edelleenkään ei siis poistettu oikeasti mitään). 
 
 Halusin myös automatisoida kansion siivouksen joka päivälle kello 3.00. Lisäsin tiedostoon cron.present-tilan:
 
-etsi_tiedostot:
-  cmd.run:
-    - name:  
-        count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 | wc -l)
-        echo “Poistettujen tiedostojen lukumäärä: $count”  > /home/vagrant/cleanup.log
-        find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> /home/vagrant/cleanup.log
+    etsi_tiedostot:
+      cmd.run:
+        - name:  
+            count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 | wc -l)
+            echo “Poistettujen tiedostojen lukumäärä: $count”  > /home/vagrant/cleanup.log
+            find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> /home/vagrant/cleanup.log
 
-luo_loki:
-  file.managed:
-    - name: /home/vagrant/cleanup.log
-    - contents: ‘Poistetut tiedostot:’
-    - unless: test -f /home/vagrant/cleanup.log
+    luo_loki:
+      file.managed:
+        - name: /home/vagrant/cleanup.log
+        - contents: ‘Poistetut tiedostot:’
+        - unless: test -f /home/vagrant/cleanup.log
 
-ajastus:
-  Cron.present:
-    - name: ‘salt “*” state.apply cleanup-projekti’
-    - user: root
-    - hour: 3
-    - minute: 0
+    ajastus:
+      cron.present:
+        - name: ‘salt “*” state.apply cleanup-projekti’
+        - user: root
+        - hour: 3
+        - minute: 0
 
 Tässä vaiheessa file.managed-tila alkoi tuntua turhalta, koska jo cmd.run-sisällä määrittelin raporttitiedoston luomisen. Halusin luoda selkeämmän rakenteen raporteille, joten loin yhden kansion, minkä sisälle tulee aina erikseen raportti poistetuista tiedostoista. Tällä hetkellä loin aina uuden raportin, joka ylikirjoitti vanhan, eli vanhoja raportteja ei voinut tarkastella. Vaihdoin siis file.managed-tilan file.directory-tilaan:
 
-etsi_tiedostot:
-  cmd.run:
-    - name:  
-        count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 | wc -l)
-        raporttipolku="/home/vagrant/cleanup/raportti-$(date +%Y-%m-%d).txt"
-        echo “Poistettujen tiedostojen lukumäärä: $count”  > $raporttipolku
-        find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> $raporttipolku
+    etsi_tiedostot:
+      cmd.run:
+        - name:  
+            count=$(find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 | wc -l)
+            raporttipolku="/home/vagrant/cleanup/raportti-$(date +%Y-%m-%d).txt"
+            echo “Poistettujen tiedostojen lukumäärä: $count”  > $raporttipolku
+            find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print >> $raporttipolku
 
-raporttikansio:
-  file.directory:
-    - name: /home/vagrant/cleanup
-    - user: root
+    raporttikansio:
+      file.directory:
+        - name: /home/vagrant/cleanup
+        - user: root
 
-cron_service:
-  service.running:
-    - name: cron
+    cron_service:
+      service.running:
+        - name: cron
 
-ajastus:
-  cron.present:
-    - name: ‘salt “*” state.apply cleanup-projekti’
-    - user: root
-    - hour: 3
-    - minute: 0
+    ajastus:
+      cron.present:
+        - name: ‘salt “*” state.apply cleanup-projekti’
+        - user: root
+        - hour: 3
+        - minute: 0
 
 Lisäsin myös cronille service.running-tilan, joka varmistaa, että cron on käynnissä. 
 
