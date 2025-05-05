@@ -2,7 +2,7 @@
 
 Tämä projekti etsii automaattisesti yli 7 päivää vanhat tiedostot määritetystä kansiosta, poistaa ne ja luo päivittäisen raportin. Se auttaa pitämään kansion siistinä ja säästämään levytilaa ilman manuaalista työtä.
 
-<img src="Screenshot 2025-05-05 at 16.18.58.png" width="60%">
+<img src="Screenshot 2025-05-05 at 16.18.58.png" width="80%">
 
 ## Lisenssi
 
