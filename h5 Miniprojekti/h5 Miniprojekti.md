@@ -26,8 +26,6 @@ Ajoin tilan komennolla:
 
     $ salt ’*’ state.apply cleanup-projekti   #Ajoin tilan kaikilla minioneilla
 
-<img src="Näyttökuva 2025-05-02 155618.png" width="60%">
-
 Vastaukseksi sain, että tilan ajaminen onnistui. Tila ajettiin ilman virheitä, mikä vahvisti, että etsintäkomento suoritettiin oikein. Varsinainen tulosten tarkistus tapahtuu minionilta erikseen, mutta tässä vaiheessa raportteja ei ollut vielä luotu, joten tarkistettavaa ei vielä ollut. 
 
 Palasin takaisin tiedostoon lisäämään:
@@ -60,6 +58,8 @@ luo_loki:
     - contents: ‘Poistetut tiedostot:’
 
 Määrittelin siis cmd.run-tilaan komennon, joka laskee poistettujen tiedostojen määrän ja listaa ne cleanup.log-tiedostoon
+
+<img src="Näyttökuva 2025-05-02 155618.png" width="60%">
 
 Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää vanha tiedosto. Siirryin minionin puolelle tarkistamaan cleanup.login sisällön. Tiedostossa kuitenkin näkyi vain teksti ”Poistetut tiedostot”, vaikka siellä piti olla lukumäärä, sekä tiedoston nimi. Palasin takaisin masterille muokkaamaan init.sls-tiedostoa.
 
