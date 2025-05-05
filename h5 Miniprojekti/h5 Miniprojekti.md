@@ -16,7 +16,9 @@ Tiedoston sisälle kirjoitin:
 
 etsi_vanhat_tiedostot:
   cmd.run:
--	name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
+    - name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
+
+<img src="kuvat/salt_version.png" width="60%">
 
 Tiedostossa määrittelin, että halusin etsiä kaikki yli 7 päivää vanhat tiedostot shared- kansiosta. Tiedostoja etsitään vain kyseistä kansiosta, mutta ei sen alikansioiden sisältä. Halusin lähteä rakentamaan projektia yksi osa kerralla, jotta voin varmistua, että kaikki sen osat toimii. Tämän vuoksi en vielä määritellyt tiedostojen poistoa init.sls-tiedostoon, vaan teen sen vasta kun muut osat projektista on rakennettu. 
 
@@ -28,12 +30,12 @@ Vastaukseksi sain, että tilan ajaminen onnistui. Palasin takaisin tiedostoon li
 
 etsi_vanhat_tiedostot:
   cmd.run:
--	name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
+    - name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
 
 luo_loki:
   file.managed:
--	name: /home/vagrant/cleanup.log
--	contents: ‘Poistettujen tiedostojen lukumäärä: ‘
+    - name: /home/vagrant/cleanup.log
+    - contents: ‘Poistettujen tiedostojen lukumäärä: ‘
 
 Tällä kertaa määrittelin, että poistetuista tiedostoista luodaan raportti, joka tallennetaan minionin kotihakemistoon tiedostoon cleanup.log. Tiedoston sisälle tuli teksti ”Poistettujen tiedostojen lukumäärä:”, minkä perään tulee myöhemmin näkyviin lukumäärä, montako tiedostoa on poistettu. Poistettujen tiedostojen lukumäärää en vielä lisännyt init.sls-tiedostoon. Ajoin taas tilan ja sain taas tilan ajon onnistuneen.
 
@@ -113,7 +115,7 @@ cron_service:
     - name: cron
 
 ajastus:
-  Cron.present:
+  cron.present:
     - name: ‘salt “*” state.apply cleanup-projekti’
     - user: root
     - hour: 3
@@ -129,7 +131,7 @@ Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsi
 
 ## Lähteet:
 
-https://terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/ Luettu: 2.5.2025
+Karvinen, T. https://terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/ Luettu: 2.5.2025
 
 https://docs.saltproject.io/en/3006/ref/states/all/salt.states.service.html Luettu: 2.5.2025
 
