@@ -18,7 +18,7 @@ etsi_vanhat_tiedostot:
   cmd.run:
     - name: find /home/vagrant/shared -maxdepth 1 -type f -mtime +7 -print
 
-<img src="kuvat/salt_version.png" width="60%">
+<img src="Näyttökuva 2025-05-02 153107.png" width="60%">
 
 Tiedostossa määrittelin, että halusin etsiä kaikki yli 7 päivää vanhat tiedostot shared- kansiosta. Tiedostoja etsitään vain kyseistä kansiosta, mutta ei sen alikansioiden sisältä. Halusin lähteä rakentamaan projektia yksi osa kerralla, jotta voin varmistua, että kaikki sen osat toimii. Tämän vuoksi en vielä määritellyt tiedostojen poistoa init.sls-tiedostoon, vaan teen sen vasta kun muut osat projektista on rakennettu. 
 
