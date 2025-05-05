@@ -26,6 +26,8 @@ Ajoin tilan komennolla:
 
     $ salt ’*’ state.apply cleanup-projekti   #Ajoin tilan kaikilla minioneilla
 
+<img src="Näyttökuva 2025-05-02 155618.png" width="60%">
+
 Vastaukseksi sain, että tilan ajaminen onnistui. Palasin takaisin tiedostoon lisäämään:
 
 etsi_vanhat_tiedostot:
