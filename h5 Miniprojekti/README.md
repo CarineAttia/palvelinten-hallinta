@@ -14,6 +14,10 @@ Carine Attia
 
 ## Lataus
 
-git clone
+git clone 
+
+## Käyttöönotto
+
+
 
 
