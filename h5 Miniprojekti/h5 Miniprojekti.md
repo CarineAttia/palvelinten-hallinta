@@ -2,9 +2,13 @@
 
 Viikon tehtävä: Oma miniprojekti
 
-Tässä projektissa toteutin tiedostojen automaattisen aiivouksen ja raportoinnin  Saltilla. Yli 7 päivää vanhat tiedostot poistetaan automaattisesti ja niistä luodaan raportti päivittäin. Käytin projektissa jo valmiiksi luotuja t001 master- ja t002 minion-koneita. Olen jo raportoinut uusien virtuaalikoneiden luomisesta aikaisemmissa tehtävissä, joten en tee sitä nyt tässä raportissa. 
+Tässä projektissa toteutin tiedostojen automaattisen siivouksen ja raportoinnin  Saltilla. Yli 7 päivää vanhat tiedostot poistetaan automaattisesti määritetystä kansiosta ja niistä luodaan raportti päivittäin. Käytin projektissa jo valmiiksi luotuja t001 master- ja t002 minion-koneita. Olen jo raportoinut uusien virtuaalikoneiden luomisesta aikaisemmissa tehtävissä, joten en tee sitä nyt tässä raportissa. 
 
-Aloitin tehtävän master koneella. Siirryin kansioon /srv/salt ja loin uuden kansion:
+Aloitin tehtävän master koneella:
+
+    vagrant ssh t001    #Yhdistin master t001-virtuaalikoneeseen
+
+Siirryin kansioon /srv/salt ja loin uuden kansion:
 
     $ sudo mkdir cleanup-projekti   #Loin uuden kansion cleanup-projekti
 
@@ -20,11 +24,11 @@ Tiedoston sisälle määrittelin:
 
 <img src="Näyttökuva 2025-05-02 153107.png" width="80%">
 
-Tiedostossa määrittelin, että halusin etsiä kaikki yli 7 päivää vanhat tiedostot shared- kansiosta. Tiedostoja etsitään vain kyseistä kansiosta, mutta ei sen alikansioiden sisältä. Halusin lähteä rakentamaan projektia yksi osa kerralla, jotta voin varmistua, että kaikki sen osat toimii. Tämän vuoksi en vielä määritellyt tiedostojen poistoa init.sls-tiedostoon, vaan teen sen vasta kun muut osat projektista on rakennettu. 
+Tiedostossa määrittelin, että halusin etsiä kaikki yli 7 päivää vanhat tiedostot shared-kansiosta. Tiedostoja etsitään vain kyseisestä kansiosta, mutta ei sen alikansioiden sisältä. Halusin lähteä rakentamaan projektia yksi osa kerralla, jotta voin varmistua, että kaikki sen osat toimii. Tämän vuoksi en vielä määritellyt tiedostojen poistoa init.sls-tiedostoon, vaan teen sen vasta kun muut osat projektista on rakennettu. 
 
 Ajoin tilan komennolla:
 
-    $ salt ’*’ state.apply cleanup-projekti   #Ajoin tilan kaikilla minioneilla
+    $ salt '*' state.apply cleanup-projekti   #Ajoin tilan kaikilla minioneilla
 
 Vastaukseksi sain, että tilan ajaminen onnistui. Tila ajettiin ilman virheitä, mikä vahvisti, että etsintäkomento suoritettiin oikein. Varsinainen tulosten tarkistus tapahtuu minionilta erikseen, mutta tässä vaiheessa raportteja tai muuta ei oltu vielä luotu, joten tarkistettavaa ei vielä ollut. 
 
@@ -63,7 +67,13 @@ Palasin init.sls-tiedoston pariin:
 
 Seuraavaksi lisäsin tiedostoon toiminnon, joka laskee löydettyjen tiedostojen määrän ja listaa ne cleanup.log-tiedostoon. 
 
-Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää vanha tiedosto. Siirryin minionin puolelle tarkistamaan cleanup.login sisällön. Tiedostossa kuitenkin näkyi vain teksti ”Poistetut tiedostot”, vaikka siellä piti olla lukumäärä, sekä tiedoston nimi. Palasin takaisin masterille muokkaamaan init.sls-tiedostoa.
+Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää vanha tiedosto. Siirryin minionin puolelle tarkistamaan cleanup.login sisällön:
+
+    $ exit    #Poistuin t001-koneelta
+    vagrant ssh t002    #Yhdistin minion t002-koneeseen
+    $ cat cleanup.log    #Katsoin cleanup.login sisällön
+
+Tiedostossa kuitenkin näkyi vain teksti ”Poistetut tiedostot”, vaikka siellä piti olla lukumäärä, sekä tiedoston nimi. Palasin takaisin masterille muokkaamaan init.sls-tiedostoa.
 
     etsi_tiedostot:
       cmd.run:
@@ -78,7 +88,7 @@ Ajoin tilan ja sain taas onnistuneen vastauksen. Löytyi yksi yli 7 päivää va
         - contents: ‘Poistetut tiedostot:’
         - unless: test -f /home/vagrant/cleanup.log
 
-Lisäsin tiedostoon file.managed-tilaan tiedon siitä, että cleanup.log-tiedosto luodaan vain, jos sitä ei ole vielä olemassa (unless-ehto). Huomasin, että file.managed-tila ylikirjoittaa cmd.runin tuottaman sisällön, jolloin tiedostossa näkyi vain otsikko, joten muokkasin myös sen. Tallensin ja ajoin tilan. Siirryin taas minionille katsomaan cleanup.logia. Nyt toimi! Nyt siellä näkyi tieto siitä, mitä oli poistettu ja montako kappaletta (edelleenkään ei siis poistettu oikeasti mitään). 
+Lisäsin tiedostoon file.managed-tilaan tiedon siitä, että cleanup.log-tiedosto luodaan vain, jos sitä ei ole vielä olemassa (unless-ehto). Huomasin, että file.managed-tila ylikirjoittaa cmd.runin tuottaman sisällön, jolloin tiedostossa näkyi vain otsikko, joten muokkasin myös sen. Tallensin ja ajoin tilan.
 
 <img src="Näyttökuva 2025-05-02 165807.png" width="60%">
 
