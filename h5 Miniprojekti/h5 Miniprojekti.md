@@ -190,7 +190,7 @@ Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen.
 
 <img src=".png" width="60%">
 
-<img src=".png" width="60%">
+<img src="Screenshot 2025-05-06 at 13.10.16.png" width="60%">
 
 Siirryin minionin puolelle tarkistamaan raporttikansion. Sielä oli raportti poistetusta tiedostosta, kuten pitikin. Tarkastin vielä shared-kansion, että raportissa mainittu tiedosto 'Näyttökuva 2025-04-04 125800.png' oli oikeasti poistettu. Sitä ei enää näkynyt kansiossa, joten tehtävä oli onnistunut ja löydetty vanha tiedosto oli poistettu kuten pitkin. 
 
