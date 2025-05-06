@@ -2,7 +2,9 @@
 
 Viikon tehtävä: Oma miniprojekti
 
-Tässä projektissa toteutin tiedostojen automaattisen siivouksen ja raportoinnin  Saltilla. Yli 7 päivää vanhat tiedostot poistetaan automaattisesti määritetystä kansiosta ja niistä luodaan raportti päivittäin. Käytin projektissa jo valmiiksi luotuja t001 master- ja t002 minion-koneita. Olen jo raportoinut uusien virtuaalikoneiden luomisesta aikaisemmissa tehtävissä, joten en tee sitä nyt tässä raportissa. 
+Tässä projektissa toteutin tiedostojen automaattisen siivouksen ja raportoinnin  Saltilla. Yli 7 päivää vanhat tiedostot poistetaan automaattisesti määritetystä kansiosta ja niistä luodaan raportti päivittäin. 
+
+Käytin projektissa jo valmiiksi luotuja t001 master- ja t002 minion-koneita, koska tiesin koneista jo valmiiksi löytyvät tiedostoja, joita voi poistaa. Olen jo raportoinut uusien virtuaalikoneiden luomisesta aikaisemmissa tehtävissä, joten en tee sitä nyt tässä raportissa. 
 
 Aloitin tehtävän master koneella:
 
