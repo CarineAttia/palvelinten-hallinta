@@ -201,6 +201,8 @@ Lopputulos toimi suunnitellusti: vanhat tiedostot poistuvat automaattisesti, rap
 
 ## Lähteet:
 
+Karvinen, T. 2025. Läksyt: h5 Miniprojekti. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/#laksyt Luettu: 1.5.2025
+
 Karvinen, T. 2018. Salt States – I Want My Computers Like This. Luettavissa:  https://terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/ Luettu: 2.5.2025
 
 VMware Inc. 2025. Salt.states.service. Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.service.html Luettu: 2.5.2025
