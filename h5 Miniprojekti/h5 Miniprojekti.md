@@ -188,7 +188,7 @@ Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsi
 
 Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen. 
 
-<img src=".png" width="60%">
+<img src="Screenshot 2025-05-06 at 13.10.29.png" width="60%">
 
 <img src="Screenshot 2025-05-06 at 13.10.16.png" width="60%">
 
