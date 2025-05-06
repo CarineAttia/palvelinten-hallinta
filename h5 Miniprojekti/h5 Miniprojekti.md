@@ -148,17 +148,17 @@ Siirryin takaisin masterille. Tässä vaiheessa file.managed-tila alkoi tuntua t
 
 Lisäsin myös cronille service.running-tilan, joka varmistaa, että cron on käynnissä. 
 
-Ajoin tilan vielä kerran varmistuakseni, että kaikki toimi.
+Ajoin tilan vielä kerran varmistuakseni, että kaikki toimi. 
 
 <img src="Näyttökuva 2025-05-03 144956.png" width="60%">
 
 <img src="Näyttökuva 2025-05-03 145011.png" width="60%">
 
-Tarkastin taas minionin puolelta, että raportti oli varmasti luotu. Se oli onnistunut.
+Tarkastin taas minionin puolelta, että raportti oli varmasti luotu. Se oli luotu onnistuneesti.
 
 <img src="Näyttökuva 2025-05-03 145103.png" width="60%">
 
-Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsin delete-ominaisuuden, joka oikeasti poistaa löydetyt tiedostot:
+Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsin cmd.run-tilaan delete-ominaisuuden, joka oikeasti poistaa löydetyt tiedostot:
 
     etsi_tiedostot:
       cmd.run:
@@ -186,7 +186,7 @@ Tämän jälkeen palasin vielä kerran masterille init.sls-tiedostoon ja lisäsi
 
 <img src="Näyttökuva 2025-05-03 145348.png" width="60%">
 
-Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen. 
+Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen. Yli 7 päivää vanhat tiedostot etsittiin ja laskettiin shared-kansiosta ja tallennettiin niiden tiedot raporttiin. Löydetyt tiedostot poistettiin. Samalla varmistettiin, että raporttikansio cleanup on olemassa. Lisäksi tarkistettiin, että cron-palvelu on käynnissä ja crontabiin lisätty ajastus oli yhä olemassa. Kaikki neljä tilaa suoritettiin onnistuneesti ilman virheitä ja järjestelmään tehtiin tarvittavat muutokset. Ajo varmisti, että kaikki projektin osat toimivat toivotulla tavalla.
 
 <img src="Screenshot 2025-05-06 at 13.10.29.png" width="60%">
 
@@ -195,6 +195,8 @@ Tallensin tiedoston ja ajoin sen. Sain onnistuneen vastauksen.
 Siirryin minionin puolelle tarkistamaan raporttikansion. Sielä oli raportti poistetusta tiedostosta, kuten pitikin. Tarkastin vielä shared-kansion, että raportissa mainittu tiedosto 'Näyttökuva 2025-04-04 125800.png' oli oikeasti poistettu. Sitä ei enää näkynyt kansiossa, joten tehtävä oli onnistunut ja löydetty vanha tiedosto oli poistettu kuten pitkin. 
 
 <img src="Näyttökuva 2025-05-03 145755.png" width="60%">
+
+Lopputulos toimi suunnitellusti: vanhat tiedostot poistuvat automaattisesti, raportit säilyvät tarkasteltaviksi, ja järjestelmä pyörii ilman manuaalista ylläpitoa.
 
 
 ## Lähteet:
