@@ -203,6 +203,8 @@ Lopputulos toimi suunnitellusti: vanhat tiedostot poistuvat automaattisesti, rap
 
 Karvinen, T. 2025. Läksyt: h5 Miniprojekti. Luettavissa: https://terokarvinen.com/palvelinten-hallinta/#laksyt Luettu: 1.5.2025
 
+Karvinen, T. 2025. Hello Salt Infra-as-Code. Luettavissa: https://terokarvinen.com/2024/hello-salt-infra-as-code/ Luettu: 2.5.2025
+
 Karvinen, T. 2018. Salt States – I Want My Computers Like This. Luettavissa:  https://terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/ Luettu: 2.5.2025
 
 VMware Inc. 2025. Salt.states.service. Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.service.html Luettu: 2.5.2025
@@ -213,9 +215,9 @@ Stack overflow. 2015. Find and delete file or folder older than x days. Luettavi
 
 Unix&Linux. 2018. Delete only files older than 7 days: -mtime and find. Luettavissa: https://unix.stackexchange.com/questions/447360/delete-only-files-older-than-7-days-mtime-and-find Luettu: 2.5.2025
 
-VMware Inc. 2025. Salt.states.cron Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.cron.html Luettu: 2.5.2025
+VMware Inc. 2025. Salt.states.cron Luettavissa: https://docs.saltproject.io/en/3006/ref/states/all/salt.states.cron.html Luettu: 3.5.2025
 
-Geeks for geeks. 2025. ‘crontab’ in Linux with Examples. Luettavissa: https://www.geeksforgeeks.org/crontab-in-linux-with-examples/ Luettu: 2.5.2025
+Geeks for geeks. 2025. ‘crontab’ in Linux with Examples. Luettavissa: https://www.geeksforgeeks.org/crontab-in-linux-with-examples/ Luettu: 3.5.2025
 
-phoenixNAP. 2024. Linux date Command: How to Set, Change, Format Date in Linux. Luettavissa: https://phoenixnap.com/kb/linux-date-command Luettu: 2.5.2025
+phoenixNAP. 2024. Linux date Command: How to Set, Change, Format Date in Linux. Luettavissa: https://phoenixnap.com/kb/linux-date-command Luettu: 3.5.2025
 
