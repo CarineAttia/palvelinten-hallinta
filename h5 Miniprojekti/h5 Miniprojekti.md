@@ -12,7 +12,7 @@ Kansion sisälle loin tiedoston:
 
     $ sudo nano init.sls   #Loin tiedoston nimeltä init.sls
 
-Tiedoston sisälle kirjoitin:
+Tiedoston sisälle määrittelin:
 
     etsi_vanhat_tiedostot:
       cmd.run:
@@ -26,7 +26,7 @@ Ajoin tilan komennolla:
 
     $ salt ’*’ state.apply cleanup-projekti   #Ajoin tilan kaikilla minioneilla
 
-Vastaukseksi sain, että tilan ajaminen onnistui. Tila ajettiin ilman virheitä, mikä vahvisti, että etsintäkomento suoritettiin oikein. Varsinainen tulosten tarkistus tapahtuu minionilta erikseen, mutta tässä vaiheessa raportteja ei ollut vielä luotu, joten tarkistettavaa ei vielä ollut. 
+Vastaukseksi sain, että tilan ajaminen onnistui. Tila ajettiin ilman virheitä, mikä vahvisti, että etsintäkomento suoritettiin oikein. Varsinainen tulosten tarkistus tapahtuu minionilta erikseen, mutta tässä vaiheessa raportteja tai muuta ei oltu vielä luotu, joten tarkistettavaa ei vielä ollut. 
 
 Palasin takaisin tiedostoon lisäämään:
 
@@ -41,7 +41,7 @@ Palasin takaisin tiedostoon lisäämään:
 
 Tällä kertaa määrittelin, että poistetuista tiedostoista luodaan raportti, joka tallennetaan minionin kotihakemistoon tiedostoon cleanup.log. Tiedoston sisälle tuli teksti ”Poistettujen tiedostojen lukumäärä:”, minkä perään tulee myöhemmin näkyviin lukumäärä, montako tiedostoa on poistettu. Poistettujen tiedostojen lukumäärää en vielä lisännyt init.sls-tiedostoon. 
 
-Ajoin taas tilan ja sain taas tilan ajon onnistuneen. 
+Ajoin taas tilan ja sain taas tilan ajon onnistuneen. Tässä ajossa etsittiin yli 7 päivää vanhat tiedostot shared-kansiosta ja kirjoitettiin niiden tiedot cleanup.log-tiedostoon sekä luotiin uusi cleanup_loki.log-tiedosto onnistuneesti. Molemmat tilat suoritettiin ilman virheitä.
 
 <img src="Näyttökuva 2025-05-02 155618.png" width="60%">
 
