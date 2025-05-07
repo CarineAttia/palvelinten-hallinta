@@ -10,7 +10,7 @@ Gnu General Public License v3.0
 
 ## Tekijä
 
-Carine Attia
+Carine
 
 ## Lataus
 
